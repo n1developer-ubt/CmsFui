@@ -9,6 +9,7 @@
 
     <StackLayout Spacing="10">
         <controls:PrimaryButton OnPressBackgroundColor="Blue" OnReleaseBackgroundColor="Black"  BackgroundColor="Black" TextColor="Wheat" Text="Hello"></controls:PrimaryButton>
+        <Label TextDecorations="Underline" FontSize="40" TextColor="Black" Text="Hello WOrld"></Label>
     </StackLayout>
 
 </ContentPage>
