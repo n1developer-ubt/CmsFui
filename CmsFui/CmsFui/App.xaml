@@ -4,16 +4,32 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:controls="clr-namespace:CmsFui.Controls;assembly=CmsFui"
              x:Class="CmsFui.App">
     <Application.Resources>
-                           <ResourceDictionary>
-                               <Style x:Key="PrimaryButton" TargetType="Button">
-                <Setter Property="BackgroundColor">#000000</Setter>
-                                   <Setter Property="TextColor">#fff</Setter>
-                                   <Setter Property="BorderColor" >#432121</Setter>
-                <Setter Property="BorderWidth" >3</Setter>
+        <ResourceDictionary>
+            <Color x:Key="PrimaryColor">#37367C</Color>
+            <Color x:Key="LightWhite">#F5F5F5</Color>
 
-                               </Style>
-                           </ResourceDictionary>
+            <Style x:Key="PrimaryLabel" TargetType="Label">
+                <Setter Property="FontSize">24dp</Setter>
+                <Setter Property="TextColor" Value="{DynamicResource PrimaryColor}"></Setter>
+            </Style>
+
+            <Style x:Key="LinkLabel" TargetType="Label">
+                <Setter Property="FontSize" Value=""></Setter>
+            </Style>
+
+            <Style x:Key="PrimaryButton" TargetType="controls:PrimaryButton">
+                <Setter Property="OnReleaseBackgroundColor" Value="{DynamicResource PrimaryColor}"/>
+                <Setter Property="OnReleaseTextColor" Value="{DynamicResource LightWhite}"/>
+                <Setter Property="OnPressBackgroundColor" Value="{DynamicResource LightWhite}"/>
+                <Setter Property="OnPressTextColor" Value="{DynamicResource PrimaryColor}"/>
+                <Setter Property="TextColor" Value="{DynamicResource LightWhite}"/>
+                <Setter Property="BorderColor" Value="{DynamicResource PrimaryColor}"/>
+                <Setter Property="BorderWidth" >4</Setter>
+                <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryColor}"></Setter>
+            </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
