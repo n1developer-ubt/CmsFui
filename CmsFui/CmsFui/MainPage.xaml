@@ -5,11 +5,22 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:CmsFui.Controls;assembly=CmsFui"
              mc:Ignorable="d"
-             x:Class="CmsFui.MainPage">
+             x:Class="CmsFui.MainPage"
+             BackgroundImageSource="back">
 
-    <StackLayout Spacing="10">
-        <controls:PrimaryButton Style="{DynamicResource PrimaryButton}" Text="Hello"></controls:PrimaryButton>
-        <Label TextDecorations="Underline" FontSize="40" TextColor="Black" Text="Hello WOrld"></Label>
-    </StackLayout>
+    <Grid RowSpacing="10" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Image Source="fui" Grid.Row="0" HeightRequest="150" WidthRequest="150" Margin="0,50,0,0" ></Image>
+        <Label Style="{DynamicResource PrimaryLabel}" Text="Who are you ?" Grid.Row="1" HorizontalOptions="Center"></Label>
+        <controls:PrimaryButton Style="{DynamicResource PrimaryImageButton}" Margin="50,0,50,0" HeightRequest="90"  Grid.Row="2" Text="Teacher" ImageSource="icoteacher" />
+        <controls:PrimaryButton Style="{DynamicResource PrimaryImageButton}" Margin="50,0,50,0" HeightRequest="90"  Grid.Row="3" Text="Student" ImageSource="icostudent" Clicked="Button_OnClicked"/>
+        <Label Style="{DynamicResource LinkLabel}"  Text="Need Help?" Grid.Row="4" VerticalOptions="End" HorizontalOptions="Center" Margin="0,0,0,20"></Label>
+    </Grid>
 
 </ContentPage>

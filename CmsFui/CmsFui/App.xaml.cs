@@ -1,6 +1,9 @@
 ﻿using System;
+using CmsFui.Views;
+using CmsFui.Views.MainView;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+
 
 namespace CmsFui
 {
@@ -10,7 +13,7 @@ namespace CmsFui
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new MainView();
         }
 
         protected override void OnStart()

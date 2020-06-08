@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
 
 namespace CmsFui.Controls
 {
-    class PrimaryButton:Button
+    public class PrimaryButton:Button
     {
         public static readonly BindableProperty OnPressBackgroundColorProperty = BindableProperty.Create("OnPressBackgroundColor", typeof(Color), typeof(VisualElement), Color.Black);
         public static readonly BindableProperty OnReleaseBackgroundColorProperty = BindableProperty.Create("OnReleaseBackgroundColor", typeof(Color), typeof(VisualElement), Color.Black);
@@ -41,6 +42,8 @@ namespace CmsFui.Controls
             this.Pressed += OnPressed;
             this.Released += OnReleased;
         }
+
+        
 
         private void OnReleased(object sender, EventArgs e)
         {

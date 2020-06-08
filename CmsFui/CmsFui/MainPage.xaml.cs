@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CmsFui.Views;
 using Xamarin.Forms;
 
 namespace CmsFui
@@ -18,20 +19,9 @@ namespace CmsFui
             InitializeComponent();
         }
 
-        private void Button_OnPressed(object sender, EventArgs e)
+        private async void Button_OnClicked(object sender, EventArgs e)
         {
-            if (sender is Button b)
-            {
-                b.BackgroundColor = Color.White;
-            }
-        }
-
-        private void Button_OnReleased(object sender, EventArgs e)
-        {
-            if (sender is Button b)
-            {
-                b.BackgroundColor = Color.Black;
-            }
+            await Navigation.PushModalAsync(new StudentLoginView());
         }
     }
 }

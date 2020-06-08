@@ -1,4 +1,9 @@
-﻿using System;
+using Syncfusion.SfNavigationDrawer.XForms.iOS;
+using Syncfusion.XForms.iOS.Border;
+using Syncfusion.SfNumericTextBox.XForms.iOS;
+using Syncfusion.XForms.iOS.ComboBox;
+using Syncfusion.XForms.iOS.MaskedEdit;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -22,7 +27,12 @@ namespace CmsFui.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            global::Xamarin.Forms.Forms.Init();
+global::Xamarin.Forms.Forms.Init();
+SfNavigationDrawerRenderer.Init();
+SfBorderRenderer.Init();
+SfNumericTextBoxRenderer.Init();
+SfComboBoxRenderer.Init();
+SfMaskedEditRenderer.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

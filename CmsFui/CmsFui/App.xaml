@@ -5,19 +5,39 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:controls="clr-namespace:CmsFui.Controls;assembly=CmsFui"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:comboBox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
              x:Class="CmsFui.App">
     <Application.Resources>
         <ResourceDictionary>
+            <!--Font Start-->
+            <OnPlatform x:TypeArguments="x:String" x:Key="DefaultRegular">
+                <On Platform="Android" Value="MontserratRegular.ttf#Montserrat" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="DefaultLight">
+                <On Platform="Android" Value="MontserratLight.ttf#Montserrat" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="DefaultSemiBold">
+                <On Platform="Android" Value="MontserratSemiBold.ttf#Montserrat" />
+            </OnPlatform>
+            <!--Font End-->
+            <x:Int16 x:Key="PrimaryBorderSize">2</x:Int16>
+            <x:Int16 x:Key="PrimaryBorderRadius">10</x:Int16>
+            <x:Int16 x:Key="PrimaryEntryFontSize">20</x:Int16>
             <Color x:Key="PrimaryColor">#37367C</Color>
             <Color x:Key="LightWhite">#F5F5F5</Color>
 
             <Style x:Key="PrimaryLabel" TargetType="Label">
-                <Setter Property="FontSize">24dp</Setter>
-                <Setter Property="TextColor" Value="{DynamicResource PrimaryColor}"></Setter>
+                <Setter Property="FontSize">24</Setter>
+                <Setter Property="TextColor" Value="{DynamicResource PrimaryColor}" />
+                <Setter Property="FontFamily" Value="{StaticResource DefaultSemiBold}"/>
             </Style>
 
             <Style x:Key="LinkLabel" TargetType="Label">
-                <Setter Property="FontSize" Value=""></Setter>
+                <Setter Property="FontSize" Value="17"/>
+                <Setter Property="TextDecorations" Value="Underline"/>
+                <Setter Property="TextColor" Value="{DynamicResource PrimaryColor}"/>
+                <Setter Property="FontFamily" Value="{StaticResource DefaultLight}"/>
             </Style>
 
             <Style x:Key="PrimaryButton" TargetType="controls:PrimaryButton">
@@ -27,9 +47,38 @@
                 <Setter Property="OnPressTextColor" Value="{DynamicResource PrimaryColor}"/>
                 <Setter Property="TextColor" Value="{DynamicResource LightWhite}"/>
                 <Setter Property="BorderColor" Value="{DynamicResource PrimaryColor}"/>
-                <Setter Property="BorderWidth" >4</Setter>
+                <Setter Property="BorderWidth" Value="{StaticResource PrimaryBorderSize}"/>
                 <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryColor}"></Setter>
+                <Setter Property="CornerRadius" Value="10"></Setter>
+                <Setter Property="Font" Value="28"></Setter>
+                <Setter Property="FontFamily" Value="{StaticResource DefaultRegular}" ></Setter>
             </Style>
+
+            <Style BasedOn="{StaticResource PrimaryButton}" TargetType="controls:PrimaryButton"  x:Key="PrimaryImageButton">
+                <Setter Property="Padding">20,0,0,0</Setter>
+            </Style>
+
+            <Style TargetType="border:SfBorder" x:Key="PrimaryBorderStyle">
+                <Setter Property="BorderColor" Value="{StaticResource PrimaryColor}"/>
+                <Setter Property="BorderWidth" Value="{StaticResource PrimaryBorderSize}"/>
+                <Setter Property="CornerRadius" Value="{DynamicResource PrimaryBorderRadius}"></Setter>
+            </Style>
+
+            <Style TargetType="controls:PrimaryEntry" x:Key="PrimaryEntry">
+                <Setter Property="PlaceholderColor" Value="{StaticResource PrimaryColor}"/>
+                <Setter Property="TextColor" Value="{StaticResource PrimaryColor}"/>
+                <Setter Property="FontFamily" Value="{StaticResource DefaultRegular}"/>
+                <Setter Property="FontSize" Value="{StaticResource PrimaryEntryFontSize}"/>
+            </Style>
+
+            <Style TargetType="comboBox:SfComboBox" x:Key="PrimarySfComboBox">
+                <Setter Property="FontFamily" Value="{DynamicResource DefaultRegular}" />
+                <Setter Property="TextSize" Value="10" />
+                <Setter Property="ShowBorder" Value="False" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="DropDownBorderColor" Value="{DynamicResource PrimaryColor}" />
+            </Style>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>
