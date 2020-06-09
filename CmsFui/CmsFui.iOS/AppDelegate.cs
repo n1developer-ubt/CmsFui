@@ -1,3 +1,4 @@
+using Syncfusion.SfChart.XForms.iOS.Renderers;
 using Syncfusion.SfNavigationDrawer.XForms.iOS;
 using Syncfusion.XForms.iOS.Border;
 using Syncfusion.SfNumericTextBox.XForms.iOS;
@@ -28,6 +29,7 @@ namespace CmsFui.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
 global::Xamarin.Forms.Forms.Init();
+SfChartRenderer.Init();
 SfNavigationDrawerRenderer.Init();
 SfBorderRenderer.Init();
 SfNumericTextBoxRenderer.Init();

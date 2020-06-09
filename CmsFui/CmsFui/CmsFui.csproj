@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <PackageReference Include="Syncfusion.Xamarin.Core" Version="18.1.0.55" />
+    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="18.1.0.55" />
     <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="18.1.0.55" />
     <PackageReference Include="Syncfusion.Xamarin.SfMaskedEdit" Version="18.1.0.55" />
     <PackageReference Include="Syncfusion.Xamarin.SfNavigationDrawer" Version="18.1.0.55" />

@@ -1,19 +1,21 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              mc:Ignorable="d"
              x:Class="CmsFui.Views.MainView.DashboardContentView" BackgroundColor="{DynamicResource LightWhite}">
-  <ContentView.Content>
-      <StackLayout Padding="10,20,10,20">
+    <ContentView.Content>
+        <ScrollView>
+        <StackLayout Padding="10,20,10,20">
             <border:SfBorder Padding="11" HorizontalOptions="FillAndExpand" BorderColor="{DynamicResource PrimaryColor}" BorderWidth="2" CornerRadius="3">
-                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="10">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="10">
                     <Image Source="pro" VerticalOptions="FillAndExpand" WidthRequest="120"></Image>
-                     <StackLayout Spacing="10" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <StackLayout Spacing="10" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                         <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal" BackgroundColor="{DynamicResource White}" HeightRequest="25">
-                             <Label VerticalOptions="Center" Style="{DynamicResource PrimaryLabel}" FontSize="15" Text="Name: "></Label>
+                            <Label VerticalOptions="Center" Style="{DynamicResource PrimaryLabel}" FontSize="15" Text="Name: "></Label>
                             <Label VerticalOptions="Center" Style="{DynamicResource PrimaryLabelLight}" Text="Usama Bin Tariq"></Label>
                         </StackLayout>
                         <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal" BackgroundColor="{DynamicResource White}" HeightRequest="25">
@@ -21,17 +23,44 @@
                             <Label VerticalOptions="Center" Style="{DynamicResource PrimaryLabelLight}" Text="F17BCSE053"></Label>
                         </StackLayout>
                         <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal" BackgroundColor="{DynamicResource White}" HeightRequest="25">
-                             <Label VerticalOptions="Center" Style="{DynamicResource PrimaryLabel}" FontSize="15" Text="Program: "></Label>
+                            <Label VerticalOptions="Center" Style="{DynamicResource PrimaryLabel}" FontSize="15" Text="Program: "></Label>
                             <Label VerticalOptions="Center" Style="{DynamicResource PrimaryLabelLight}" Text="BCSE"></Label>
                         </StackLayout>
                         <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal" BackgroundColor="{DynamicResource White}" HeightRequest="25">
-                             <Label VerticalOptions="Center" Style="{DynamicResource PrimaryLabel}" FontSize="15" Text="CGPA: "></Label>
+                            <Label VerticalOptions="Center" Style="{DynamicResource PrimaryLabel}" FontSize="15" Text="CGPA: "></Label>
                             <Label VerticalOptions="Center" Style="{DynamicResource PrimaryLabelLight}" Text="3.67"></Label>
                         </StackLayout>
-                     </StackLayout>
-                 </StackLayout>
+                    </StackLayout>
+                </StackLayout>
             </border:SfBorder>
+            <ScrollView Orientation="Horizontal">
+                <chart:SfChart x:Name="MyChart" HeightRequest="200" WidthRequest="600">
+                    <chart:SfChart.Legend >
+                        <chart:ChartLegend />
+                    </chart:SfChart.Legend>
+                    <chart:SfChart.PrimaryAxis>
+                        <chart:CategoryAxis>
 
-      </StackLayout>
-  </ContentView.Content>
+                        </chart:CategoryAxis>
+                    </chart:SfChart.PrimaryAxis>
+                    <chart:SfChart.SecondaryAxis>
+                        <chart:NumericalAxis>
+
+                        </chart:NumericalAxis>
+                    </chart:SfChart.SecondaryAxis>
+
+                    <!--<chart:ColumnSeries XBindingPath="Month" YBindingPath="Target">
+                            
+                        </chart:ColumnSeries>
+                        <chart:ColumnSeries XBindingPath="Month" YBindingPath="Target">
+                            
+                        </chart:ColumnSeries>
+                        <chart:ColumnSeries XBindingPath="Month" YBindingPath="Target">
+                            
+                        </chart:ColumnSeries>-->
+                </chart:SfChart>
+                </ScrollView>
+            </StackLayout>
+        </ScrollView>
+    </ContentView.Content>
 </ContentView>
