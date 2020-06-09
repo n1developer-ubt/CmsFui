@@ -26,11 +26,25 @@
             <x:Int16 x:Key="PrimaryEntryFontSize">20</x:Int16>
             <Color x:Key="PrimaryColor">#37367C</Color>
             <Color x:Key="LightWhite">#F5F5F5</Color>
+            <Color x:Key="White">#ffffff</Color>
 
             <Style x:Key="PrimaryLabel" TargetType="Label">
                 <Setter Property="FontSize">24</Setter>
                 <Setter Property="TextColor" Value="{DynamicResource PrimaryColor}" />
                 <Setter Property="FontFamily" Value="{StaticResource DefaultSemiBold}"/>
+            </Style>
+
+            <Style x:Key="PrimaryLabelLight" TargetType="Label">
+                <Setter Property="FontSize">15</Setter>
+                <Setter Property="TextColor" Value="{DynamicResource PrimaryColor}" />
+                <Setter Property="FontFamily" Value="{StaticResource DefaultLight}"/>
+            </Style>
+
+            <Style x:Key="PrimaryHeaderLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="{DynamicResource PrimaryColor}"/>
+                <Setter Property="FontSize" Value="30"/>
+                <Setter Property="FontFamily" Value="{DynamicResource DefaultSemiBold}"/>
+                <!--<Setter />-->
             </Style>
 
             <Style x:Key="LinkLabel" TargetType="Label">

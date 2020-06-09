@@ -1,12 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:local="clr-namespace:NaviSample" 
              xmlns:navigationdrawer="clr-namespace:Syncfusion.SfNavigationDrawer.XForms;assembly=Syncfusion.SfNavigationDrawer.XForms"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              x:Class="CmsFui.Views.MainView.MainView">
     <navigationdrawer:SfNavigationDrawer x:Name="navigationDrawer" 
-                                         DrawerWidth ="200" 
-                                         DrawerHeaderHeight="160">
+                                         DrawerWidth ="260" 
+                                         DrawerHeaderHeight="120"
+                                         DrawerFooterHeight="100"
+                                         >
         <navigationdrawer:SfNavigationDrawer.ContentView>
             <Grid x:Name="mainContentView" 
                   BackgroundColor="White">
@@ -14,68 +16,89 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <StackLayout BackgroundColor="#1aa1d6" 
-                             Orientation="Horizontal">
-                    <Button x:Name="hamburgerButton" 
-                            HeightRequest="50" 
-                            WidthRequest="50" 
-                            HorizontalOptions="Start" 
-                            FontSize="20" 
-                            BackgroundColor="#1aa1d6" 
-                            Clicked="hamburgerButton_Clicked"/>
-                    <Label x:Name="headerLabel" 
-                           HeightRequest="50" 
-                           HorizontalTextAlignment="Center" 
-                           VerticalTextAlignment="Center" 
-                           Text="Home" 
-                           FontSize="16" 
-                           TextColor="White" 
-                           BackgroundColor="#1aa1d6"/>
+                <StackLayout BackgroundColor="{DynamicResource LightWhite}" 
+                             Orientation="Horizontal" Padding="0,0,10,0" HeightRequest="60">
+                    <StackLayout HorizontalOptions="StartAndExpand">
+                        <Button x:Name="hamburgerButton" 
+                                WidthRequest="50" 
+                                VerticalOptions="FillAndExpand"
+                                FontSize="20" 
+                                BackgroundColor="#1aa1d6" 
+                                Clicked="hamburgerButton_Clicked"
+                                ImageSource=""/>
+                    </StackLayout>
+                    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                        <Label x:Name="headerLabel" 
+                               Style="{DynamicResource PrimaryHeaderLabel}"
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="CenterAndExpand"
+                               HorizontalTextAlignment="Center" 
+                               VerticalTextAlignment="Center" 
+                               Text="CMS-FUI" 
+                               />
+                    </StackLayout>
+                    <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand">
+                        <Image Source="fui" HeightRequest="30" WidthRequest="30" HorizontalOptions="End"></Image>
+                    </StackLayout>
                 </StackLayout>
-                <Label Grid.Row="1" 
-                       x:Name="contentLabel" 
-                       VerticalOptions="Center" 
-                       HorizontalOptions="Center" 
-                       Text="Content View" 
-                       FontSize="14" 
-                       TextColor="Black"/>
+                <ContentView Grid.Row="1" x:Name="MainContentView">
+
+                </ContentView>
             </Grid>
         </navigationdrawer:SfNavigationDrawer.ContentView>
-        <navigationdrawer:SfNavigationDrawer.DrawerHeaderView>
-            <Grid BackgroundColor="#1aa1d6">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="120"/>
-                    <RowDefinition Height="40"/>
-                </Grid.RowDefinitions>
-                <Image Source="user.png" 
-                       HeightRequest="110" 
-                       Margin="0,10,0,0" 
-                       BackgroundColor="#1aa1d6" 
-                       VerticalOptions="Center" 
-                       HorizontalOptions="Center"/>
-                <Label Text="James Pollock" 
-                       Grid.Row="1" 
-                       HorizontalTextAlignment="Center" 
-                       HorizontalOptions="Center" 
-                       FontSize="20" 
-                       TextColor="White"/>
-            </Grid>
+        <navigationdrawer:SfNavigationDrawer.DrawerHeaderView >
+            <StackLayout  BackgroundColor="{DynamicResource White}" Margin="18"  Orientation="Horizontal" VerticalOptions="CenterAndExpand" Spacing="0">
+                <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="Center" HeightRequest="83" WidthRequest="72" >
+                    <Image Source="fui" HeightRequest="83" WidthRequest="72" ></Image>
+                </StackLayout>
+                <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="Center" Orientation="Vertical" >
+                    <Label Style="{DynamicResource PrimaryLabel}" Text="Welcome" FontSize="15" HorizontalOptions="Center"></Label>
+                    <Label Style="{DynamicResource PrimaryLabel}" Text="Usama Bin Tariq" FontSize="18" HorizontalOptions="Center"></Label>
+                    <Label Style="{DynamicResource LinkLabel}" Text="Logout" FontSize="15" HorizontalOptions="Center"></Label>
+                </StackLayout>
+            </StackLayout>
         </navigationdrawer:SfNavigationDrawer.DrawerHeaderView>
         <navigationdrawer:SfNavigationDrawer.DrawerContentView>
-            <ListView x:Name="listView" 
-                      ItemSelected="listView_ItemSelected">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout HeightRequest="40">
-                                <Label Margin="10,7,0,0" 
-                                       Text="{Binding}" 
-                                       FontSize="16"/>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+            <StackLayout VerticalOptions="Center">
+                <ScrollView BackgroundColor="{DynamicResource PrimaryColor}" VerticalOptions="FillAndExpand">
+                    <ListView IsEnabled="false" x:Name="MenuView" VerticalOptions="FillAndExpand" RowHeight="56" Margin="20,50,20,0">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell >
+                                <StackLayout  Margin="0,0,0,16" VerticalOptions="FillAndExpand" >
+                                    <border:SfBorder CornerRadius="10"  BackgroundColor="White" HeightRequest="50">
+                                        <Label Text="{Binding}" Style="{DynamicResource PrimaryLabel}" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+                                    </border:SfBorder>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                    <ListView.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Course Portal</x:String>
+                            <x:String>Register Courses</x:String>
+                            <x:String>Attendance</x:String>
+                            <x:String>Result</x:String>
+                            <x:String>Fee Challan</x:String>
+                            <x:String>Setting</x:String>
+                        </x:Array>
+                    </ListView.ItemsSource>
+                </ListView>
+                </ScrollView>
+            </StackLayout>
         </navigationdrawer:SfNavigationDrawer.DrawerContentView>
+        <navigationdrawer:SfNavigationDrawer.DrawerFooterView>
+            <StackLayout BackgroundColor="{DynamicResource PrimaryColor}" VerticalOptions="CenterAndExpand" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" >
+                <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="backarrow" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" HeightRequest="20" WidthRequest="20" Grid.Column="0"></Image>
+                    <Label Text="Back" TextColor="{DynamicResource White}" FontSize="16" VerticalOptions="Center" Grid.Column="1" FontFamily="{DynamicResource DefaultSemiBold}"></Label>
+                </Grid>
+            </StackLayout>
+        </navigationdrawer:SfNavigationDrawer.DrawerFooterView>
     </navigationdrawer:SfNavigationDrawer>
 </ContentPage>

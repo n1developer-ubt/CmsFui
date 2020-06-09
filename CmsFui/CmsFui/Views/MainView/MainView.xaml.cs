@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,18 +13,13 @@ namespace CmsFui.Views.MainView
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainView : ContentPage
     {
+        ObservableCollection<MenuItem> menuItems = new ObservableCollection<MenuItem>();
+        public ObservableCollection<MenuItem> MenuItems { get { return menuItems; } }
         public MainView()
         {
             InitializeComponent();
-            hamburgerButton.Image = (FileImageSource)ImageSource.FromFile("hamburger_icon.png");
-            List<string> list = new List<string>();
-            list.Add("Home");
-            list.Add("Profile");
-            list.Add("Inbox");
-            list.Add("Out box");
-            list.Add("Sent");
-            list.Add("Draft");
-            listView.ItemsSource = list;
+            //hamburgerButton.Image = (FileImageSource)ImageSource.FromFile("hamburger_icon.png");
+            MainContentView.Content = new DashboardContentView();
         }
 
         void hamburgerButton_Clicked(object sender, EventArgs e)
@@ -35,6 +31,11 @@ namespace CmsFui.Views.MainView
         {
             // Your codes here
             navigationDrawer.ToggleDrawer();
+        }
+
+        public class MenuItem
+        {
+            public string ItemName { get; set; }
         }
     }
 }
