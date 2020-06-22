@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:navigationdrawer="clr-namespace:Syncfusion.SfNavigationDrawer.XForms;assembly=Syncfusion.SfNavigationDrawer.XForms"
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-             x:Class="CmsFui.Views.MainView.MainView">
+             x:Class="CmsFui.Views.MainView.MainView"
+             NavigationPage.HasNavigationBar="False">
     <navigationdrawer:SfNavigationDrawer x:Name="navigationDrawer" 
                                          DrawerWidth ="260" 
                                          DrawerHeaderHeight="120"
@@ -18,14 +19,15 @@
                 </Grid.RowDefinitions>
                 <StackLayout BackgroundColor="{DynamicResource LightWhite}" 
                              Orientation="Horizontal" Padding="0,0,10,0" HeightRequest="60">
-                    <StackLayout HorizontalOptions="StartAndExpand">
+                    <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand">
                         <Button x:Name="hamburgerButton" 
-                                WidthRequest="50" 
-                                VerticalOptions="FillAndExpand"
+                                WidthRequest="50"
+                                HeightRequest="50"
+                                VerticalOptions="CenterAndExpand"
                                 FontSize="20" 
-                                BackgroundColor="#1aa1d6" 
+                                BackgroundColor="{DynamicResource LightWhite}" 
                                 Clicked="hamburgerButton_Clicked"
-                                ImageSource=""/>
+                                ImageSource="hamburger"/>
                     </StackLayout>
                     <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                         <Label x:Name="headerLabel" 

@@ -19,7 +19,7 @@ namespace CmsFui.Views.MainView
         {
             InitializeComponent();
             //hamburgerButton.Image = (FileImageSource)ImageSource.FromFile("hamburger_icon.png");
-            MainContentView.Content = new DashboardContentView();
+            MainContentView.Content = new SettingContentView();
         }
 
         void hamburgerButton_Clicked(object sender, EventArgs e)

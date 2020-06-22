@@ -27,6 +27,11 @@
             <Color x:Key="PrimaryColor">#37367C</Color>
             <Color x:Key="LightWhite">#F5F5F5</Color>
             <Color x:Key="White">#ffffff</Color>
+            <Color x:Key="DarkSkyColor">#0779E4</Color>
+            <Color x:Key="DarkWhite">#CECECE</Color>
+            <Color x:Key="DarkPale">#7EFFE9</Color>
+            <Color x:Key="Pink">#E43F5A</Color>
+            <Color x:Key="LightWhite2">#F2F2F2</Color>
 
             <Style x:Key="PrimaryLabel" TargetType="Label">
                 <Setter Property="FontSize">24</Setter>
@@ -78,6 +83,21 @@
                 <Setter Property="CornerRadius" Value="{DynamicResource PrimaryBorderRadius}"></Setter>
             </Style>
 
+            <Style x:Key="PrimaryPinkButton" BasedOn="{StaticResource PrimaryButton}" TargetType="controls:PrimaryButton">
+                <Setter Property="TextColor" Value="{DynamicResource White}"/>
+                <Setter Property="BackgroundColor" Value="{DynamicResource Pink}"/>
+                <Setter Property="OnPressBackgroundColor" Value="{DynamicResource White}"/>
+                <Setter Property="OnPressTextColor" Value="{DynamicResource Pink}"/>
+                <Setter Property="OnReleaseTextColor" Value="{DynamicResource White}"/>
+                <Setter Property="OnReleaseBackgroundColor" Value="{DynamicResource Pink}"/>
+                <Setter Property="BorderColor" Value="{DynamicResource Pink}"/>
+                <Setter Property="CornerRadius" Value="50"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="Padding" Value="10,0,10,0"/>
+
+
+            </Style>
+
             <Style TargetType="controls:PrimaryEntry" x:Key="PrimaryEntry">
                 <Setter Property="PlaceholderColor" Value="{StaticResource PrimaryColor}"/>
                 <Setter Property="TextColor" Value="{StaticResource PrimaryColor}"/>
@@ -91,6 +111,13 @@
                 <Setter Property="ShowBorder" Value="False" />
                 <Setter Property="BackgroundColor" Value="Transparent" />
                 <Setter Property="DropDownBorderColor" Value="{DynamicResource PrimaryColor}" />
+            </Style>
+
+            <Style TargetType="border:SfBorder" x:Key="PrimaryShadowBorder">
+                <Setter Property="BorderColor" Value="{DynamicResource DarkWhite}"/>
+                <Setter Property="BorderWidth" Value="3"/>
+                <Setter Property="ShadowColor" Value="{DynamicResource PrimaryColor}"/>
+                <Setter Property="CornerRadius" Value="50"/>
             </Style>
 
         </ResourceDictionary>

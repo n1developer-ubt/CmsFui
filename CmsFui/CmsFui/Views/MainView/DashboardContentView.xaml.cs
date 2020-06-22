@@ -25,11 +25,11 @@ namespace CmsFui.Views.MainView
                 new Model("Apr", 57),
                 new Model("May", 48),
             };
-
-            MyChart.Series.Add(new ColumnSeries(){ItemsSource = Data, XBindingPath = "Month", YBindingPath = "Target", Label = "Hello", Width = 100});
-            MyChart.Series.Add(new ColumnSeries(){ItemsSource = Data, XBindingPath = "Month", YBindingPath = "Target", Label = "HelloWorld" });
-            MyChart.Series.Add(new ColumnSeries(){ItemsSource = Data, XBindingPath = "Month", YBindingPath = "Target", Label = "HelloS" });
-            MyChart.Series.Add(new ColumnSeries(){ItemsSource = Data, XBindingPath = "Month", YBindingPath = "Target"});
+            var marker = new ChartDataMarker(){LabelStyle =  new DataMarkerLabelStyle(){LabelPosition = DataMarkerLabelPosition.Inner}};
+            MyChart.Series.Add(new ColumnSeries(){ItemsSource = Data, XBindingPath = "Month", YBindingPath = "Target", Label = "Hello", Width = 100, EnableAnimation = true, AnimationDuration = 1, DataMarker = marker });
+            MyChart.Series.Add(new ColumnSeries(){ItemsSource = Data, XBindingPath = "Month", YBindingPath = "Target", Label = "HelloWorld", EnableAnimation = true, AnimationDuration = 1, DataMarker = marker });
+            MyChart.Series.Add(new ColumnSeries(){ItemsSource = Data, XBindingPath = "Month", YBindingPath = "Target", Label = "HelloS", EnableAnimation = true, AnimationDuration = 1, DataMarker = marker });
+            MyChart.Series.Add(new ColumnSeries(){ItemsSource = Data, XBindingPath = "Month", YBindingPath = "Target", EnableAnimation = true, AnimationDuration = 1, DataMarker = marker});
         }
 
         public class Model

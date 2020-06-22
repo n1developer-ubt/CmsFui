@@ -11,9 +11,10 @@ namespace CmsFui
     {
         public App()
         {
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MjY5NjgyQDMxMzgyZTMxMmUzMGpKSktZRmI0dUNBdVdXdFFTcDFCSTJqQXQrZ2QzWk54NnduSklaYmZkRU09");
             InitializeComponent();
 
-            MainPage = new MainView();
+            MainPage = new NavigationPage(new MainView());
         }
 
         protected override void OnStart()

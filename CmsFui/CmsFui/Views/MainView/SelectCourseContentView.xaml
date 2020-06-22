@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:controls="clr-namespace:CmsFui.Controls;assembly=CmsFui"
+             mc:Ignorable="d"
+             x:Class="CmsFui.Views.MainView.SelectCourseContentView">
+  <ContentView.Content>
+        <StackLayout Padding="20,20,20,40">
+            <StackLayout VerticalOptions="StartAndExpand" Margin="0,0,0,20">
+                <Label Text="Select course" VerticalOptions="Center" HorizontalOptions="Center" Style="{DynamicResource PrimaryLabel}" FontFamily="{DynamicResource DefaultLight}"></Label>
+            </StackLayout>
+            <StackLayout VerticalOptions="FillAndExpand" >
+                <ScrollView >
+                    <ListView RowHeight="100">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <border:SfBorder BackgroundColor="{DynamicResource DarkPale}" CornerRadius="3" BorderWidth="4" BorderColor="{DynamicResource PrimaryColor}" Padding="5,5,0,0" Margin="0,0,0,10">
+                                        <StackLayout HorizontalOptions="FillAndExpand" Orientation="Vertical" VerticalOptions="FillAndExpand">
+                                            <StackLayout VerticalOptions="FillAndExpand" >
+                                                <Label VerticalOptions="Start" Text="{Binding}" Style="{DynamicResource PrimaryLabel}" FontSize="20"></Label>
+
+                                            </StackLayout>
+                                            <StackLayout VerticalOptions="End" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                                                <Label HorizontalOptions="StartAndExpand"  Style="{DynamicResource PrimaryLabelLight}" Text="{Binding}"></Label>
+                                                <border:SfBorder CornerRadius="20,0,0,0" BorderColor="{DynamicResource PrimaryColor}" BackgroundColor="{DynamicResource PrimaryColor}" Padding="5,0,0,0">
+                                                    <Label FontSize="18" Text="{Binding}" HorizontalOptions="Center" Style="{DynamicResource PrimaryLabelLight}" TextColor="{DynamicResource White}" ></Label>
+                                                </border:SfBorder>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </border:SfBorder>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Course Portal</x:String>
+                                <x:String>Register Courses</x:String>
+                                <x:String>Attendance</x:String>
+                                <x:String>Result</x:String>
+                                <x:String>Fee Challan</x:String>
+                                <x:String>Setting</x:String>
+                            </x:Array>
+                        </ListView.ItemsSource>
+                    </ListView>
+                </ScrollView>
+            </StackLayout>
+            <StackLayout VerticalOptions="EndAndExpand" Spacing="20" Margin="0,20,0,0">
+                <border:SfBorder Style="{DynamicResource PrimaryShadowBorder}" HeightRequest="50">
+                    <Label Text="Back to the Dashboard" FontSize="18" VerticalOptions="Center" HorizontalOptions="Center" FontFamily="{DynamicResource DefaultRegular}" TextColor="{DynamicResource PrimaryColor}">
+                        
+                    </Label>                    
+                </border:SfBorder>
+            </StackLayout>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

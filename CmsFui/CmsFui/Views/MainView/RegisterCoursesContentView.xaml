@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:CmsFui.Controls;assembly=CmsFui"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             mc:Ignorable="d"
+             x:Class="CmsFui.Views.MainView.RegisterCoursesContentView"
+             BackgroundColor="{DynamicResource LightWhite}">
+  <ContentView.Content >
+      <StackLayout Padding="20,40,20,40">
+            <StackLayout VerticalOptions="Fill" >
+                  <ScrollView >
+                        <ListView RowHeight="100">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <border:SfBorder CornerRadius="3" BorderWidth="4" BorderColor="{DynamicResource PrimaryColor}" Padding="5,5,0,0" Margin="0,0,0,10">
+                                        <StackLayout HorizontalOptions="FillAndExpand" Orientation="Vertical" VerticalOptions="FillAndExpand">
+                                                 <StackLayout VerticalOptions="FillAndExpand" >
+                                                     <Label VerticalOptions="Start" Text="{Binding}" Style="{DynamicResource PrimaryLabel}" FontSize="20"></Label>
+                                                     
+                                                 </StackLayout>
+                                                 <StackLayout VerticalOptions="End" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                                                     <Label HorizontalOptions="StartAndExpand"  Style="{DynamicResource PrimaryLabelLight}" Text="{Binding}"></Label>
+                                                <border:SfBorder CornerRadius="20,0,0,0" BorderColor="{DynamicResource PrimaryColor}" BackgroundColor="{DynamicResource PrimaryColor}" Padding="5,0,0,0">
+                                                         <Label FontSize="18" Text="{Binding}" HorizontalOptions="Center" Style="{DynamicResource PrimaryLabelLight}" TextColor="{DynamicResource White}" ></Label>
+                                                     </border:SfBorder>
+                                                 </StackLayout>
+                                            </StackLayout>
+                                        </border:SfBorder>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                            <ListView.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>Course Portal</x:String>
+                                    <x:String>Register Courses</x:String>
+                                    <x:String>Attendance</x:String>
+                                    <x:String>Result</x:String>
+                                    <x:String>Fee Challan</x:String>
+                                    <x:String>Setting</x:String>
+                                </x:Array>
+                            </ListView.ItemsSource>
+                    </ListView>
+                  </ScrollView>
+            </StackLayout>
+            <StackLayout VerticalOptions="EndAndExpand" Spacing="20">
+                <controls:PrimaryButton Text="Submit" OnReleaseBackgroundColor="{DynamicResource DarkSkyColor}" BorderColor="{DynamicResource DarkSkyColor}" BackgroundColor="{DynamicResource DarkSkyColor}" HeightRequest="70" HorizontalOptions="Center" WidthRequest="180" Style="{DynamicResource PrimaryButton}"></controls:PrimaryButton>
+                <Label HorizontalOptions="Center" Style="{DynamicResource LinkLabel}" Text="Back to Dashboard"></Label>
+            </StackLayout>
+      </StackLayout>
+  </ContentView.Content>
+</ContentView>

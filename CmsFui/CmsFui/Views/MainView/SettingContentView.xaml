@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:controls="clr-namespace:CmsFui.Controls;assembly=CmsFui"
+             mc:Ignorable="d"
+             x:Class="CmsFui.Views.MainView.SettingContentView">
+  <ContentView.Content>
+      <StackLayout Padding="10,20,10,20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <border:SfBorder 
+                BorderWidth="2" 
+                BorderColor="{DynamicResource PrimaryColor}" 
+                CornerRadius="2"
+                Padding="10"
+                BackgroundColor="{DynamicResource White}"
+                >
+                <StackLayout 
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    Spacing="20"
+                    >
+                    <border:SfBorder 
+                        BorderWidth="0"
+                        BackgroundColor="{DynamicResource LightWhite}"
+                        Padding="5"
+                        >
+                        <StackLayout
+                             Orientation="Horizontal"
+                             HorizontalOptions="FillAndExpand"
+                             Spacing="1"
+                            >
+                            <Label
+                                VerticalOptions="Center"
+                                Style="{DynamicResource PrimaryLabel}"
+                                FontSize="18"
+                                Margin="0"
+                                Text="Name: "
+                                >
+                            </Label>
+                            <controls:PrimaryEntry
+                                Style="{DynamicResource PrimaryEntry}"
+                                FontSize="18"
+                                VerticalOptions="Center"
+                                HorizontalOptions="FillAndExpand"
+                                Placeholder="Name"
+                            >
+                            </controls:PrimaryEntry>
+                            <Image 
+                                Source="icoedit"
+                                WidthRequest="20"
+                                HeightRequest="20"
+                                VerticalOptions="Center"
+                            >
+
+                            </Image>
+                        </StackLayout>
+                    </border:SfBorder>
+                    <border:SfBorder 
+                        BorderWidth="0"
+                        BackgroundColor="{DynamicResource LightWhite}"
+                        Padding="5"
+                        >
+                        <StackLayout
+                             Orientation="Horizontal"
+                             HorizontalOptions="FillAndExpand"
+                             Spacing="1"
+                            >
+                            <Label
+                                VerticalOptions="Center"
+                                Style="{DynamicResource PrimaryLabel}"
+                                FontSize="18"
+                                Margin="0"
+                                Text="Password: "
+                                >
+                            </Label>
+                            <controls:PrimaryEntry
+                                Style="{DynamicResource PrimaryEntry}"
+                                FontSize="18"
+                                IsPassword="true"
+                                VerticalOptions="Center"
+                                HorizontalOptions="FillAndExpand"
+                                Placeholder="Password"
+                            >
+                            </controls:PrimaryEntry>
+                            <Image 
+                                Source="fui"
+                                WidthRequest="20"
+                                HeightRequest="20"
+                                VerticalOptions="Center"
+                            >
+
+                            </Image>
+                        </StackLayout>
+                    </border:SfBorder>
+                    <border:SfBorder 
+                        BorderWidth="0"
+                        BackgroundColor="{DynamicResource LightWhite}"
+                        Padding="5"
+                        >
+                        <StackLayout
+                             Orientation="Horizontal"
+                             HorizontalOptions="FillAndExpand"
+                             Spacing="1"
+                            >
+                            <Label
+                                VerticalOptions="Center"
+                                Style="{DynamicResource PrimaryLabel}"
+                                FontSize="18"
+                                Margin="0"
+                                Text="Email: "
+                                >
+                            </Label>
+                            <controls:PrimaryEntry
+                                Style="{DynamicResource PrimaryEntry}"
+                                FontSize="18"
+                                VerticalOptions="Center"
+                                HorizontalOptions="FillAndExpand"
+                                Placeholder="Email"
+                            >
+                            </controls:PrimaryEntry>
+                            <Image 
+                                Source="fui"
+                                WidthRequest="20"
+                                HeightRequest="20"
+                                VerticalOptions="Center"
+                            >
+
+                            </Image>
+                        </StackLayout>
+                    </border:SfBorder>
+                    <controls:PrimaryButton 
+                        Style="{DynamicResource PrimaryPinkButton}" 
+                        HorizontalOptions="Center"  
+                        Margin="0,20,0,0"  
+                        Text="Save"
+                        Padding="40,0,40,0"
+                        x:Name="btnSave"
+                        Clicked="BtnSave_OnClicked"
+                        >
+
+                    </controls:PrimaryButton>
+                </StackLayout>                
+            </border:SfBorder>        
+      </StackLayout>
+  </ContentView.Content>
+</ContentView>

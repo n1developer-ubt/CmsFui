@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="CmsFui.Views.Successful"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout Margin="20,10,20,10">
+            <Image Source="done"
+                   VerticalOptions="Start"
+                   Margin="0,40,0,10"
+                   >
+
+            </Image>
+            <Label Text="Your selected courses has been registered Successfully" 
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalTextAlignment="Center"
+                   Style="{DynamicResource PrimaryLabel}" 
+                   FontSize="33" 
+                   HorizontalOptions="StartAndExpand"
+                   >
+            </Label>
+            <Label 
+                Style="{DynamicResource LinkLabel}"
+                VerticalOptions="End"
+                Text="Back to the Dashboard"
+                HorizontalOptions="Center"  
+                Margin="0,0,0,20"
+            >
+            </Label>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
