@@ -18,12 +18,12 @@ namespace CmsFuiRestApi.Models
         public string RollNo { get; set; }
         public string Password { get; set; }
         public string Name { get; set; }
-        public string CurrentSemester { get; set; }
         public string Email { get; set; }
 
-        [ForeignKey("RegisteredCourses")]
-        public List<Course> RegisteredCourses { get; set; }
+        [ForeignKey("SemesterId")]
+        public List<StudentSemester> Semesters { get; set; }
 
-
+        [ForeignKey("CurrentSemesterId")]
+        public StudentSemester CurrentSemester { get; set; }
     }
 }

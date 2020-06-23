@@ -18,8 +18,5 @@ namespace CmsFuiRestApi.Models
 
         [ForeignKey("StudentRegisteredCoursesId")]
         public List<SemesterCourse> StudentRegisteredCourses { get; set; }
-
-
-
     }
 }
