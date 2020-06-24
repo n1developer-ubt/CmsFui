@@ -11,12 +11,12 @@ namespace CmsFuiApiV1.Services
     {
         private readonly StudentDbContext _dbContext;
 
-        public StudentService()
+        public StudentService(StudentDbContext dbContext)
         {
-            _dbContext = new StudentDbContext();
+            _dbContext = dbContext;
         }
 
-        public async void AddFakeStudent()
+        public void AddFakeStudent()
         {
             Student newStudent = new Student
             {
@@ -26,12 +26,12 @@ namespace CmsFuiApiV1.Services
                 Password = "abcdef",
                 Year = 17,
                 Program = "BCSE",
-                Season = "FA",
+                Season = "F",
             };
 
-            var result = _dbContext.Students.Add(newStudent);
+            _dbContext.Students.Add(newStudent);
 
-            await _dbContext.SaveChangesAsync();
+            _dbContext.SaveChanges();
         }
 
         public async Task<Student> GetStudentById(int id)
