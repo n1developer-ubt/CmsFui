@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using CmsFuiRestApi.Models.Data;
-using CmsFuiRestApi.Services;
+﻿using System.Threading.Tasks;
+using CmsFuiApiV1.Models.Data;
+using CmsFuiApiV1.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CmsFuiRestApi.Controllers
+namespace CmsFuiApiV1.Controllers
 {
     [Route("api/v1/student/")]
     public class StudentController:Controller

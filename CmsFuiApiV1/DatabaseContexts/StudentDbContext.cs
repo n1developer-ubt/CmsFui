@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using CmsFuiRestApi.Models;
-using CmsFuiRestApi.Models.Data;
+﻿using CmsFuiApiV1.Models;
+using CmsFuiApiV1.Models.Data;
 using Microsoft.EntityFrameworkCore;
 using MySql.Data.MySqlClient;
 
-namespace CmsFuiRestApi.DatabaseContexts
+namespace CmsFuiApiV1.DatabaseContexts
 {
     public class StudentDbContext:DbContext
     {
