@@ -10,8 +10,5 @@ namespace CmsFuiApiV1.Models.Data
         public int Id { get; set; }
 
         public string Name { get; set; }
-
-        [ForeignKey("RegisteredCourses")]
-        public List<Course> RegisteredCourses { get; set; }
     }
 }

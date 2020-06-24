@@ -16,6 +16,7 @@ namespace CmsFuiApiV1.Controllers
         public StudentController(StudentDbContext dbContext)
         {
             _studentService = new StudentService(dbContext);
+            
             _studentService.AddFakeStudent();
         }
 
@@ -23,6 +24,11 @@ namespace CmsFuiApiV1.Controllers
         public IActionResult Test()
         {
             return Ok("Helsso");
+        }
+
+        public async Task<IActionResult> GetS([FromQuery] int studentId)
+        {
+            return Ok(await _studentService.GetRegisteredCourses(studentId));
         }
 
         [HttpPost("authenticate")]
