@@ -10,7 +10,7 @@ namespace CmsFuiApiV1.Models
         [Key]
         public int Id { get; set; }
 
-        [ForeignKey("SemesterId")]
+        [ForeignKey("SemesterIdx")]
         public Semester Semester { get; set; }
 
         [ForeignKey("StudentRegisteredCoursesId")]

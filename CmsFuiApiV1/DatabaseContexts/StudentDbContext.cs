@@ -15,10 +15,5 @@ namespace CmsFuiApiV1.DatabaseContexts
         }
 
         public DbSet<Student> Students { get; set; }
-        public DbSet<Course> Courses { get; set; }
-        public DbSet<Exam> Exams { get; set; }
-        public DbSet<Semester> Semesters { get; set; }
-        public DbSet<Teacher> Teachers { get; set; }
-        public DbSet<SemesterCourse> SemesterCourses { get; set; }
     }
 }

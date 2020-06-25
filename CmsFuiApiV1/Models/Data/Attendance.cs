@@ -9,6 +9,6 @@ namespace CmsFuiApiV1.Models.Data
         public int Id { get; set; }
 
         public DateTime Date { get; set; }
-        public bool Present { get; set; }
+        public Boolean Present { get; set; }
     }
 }

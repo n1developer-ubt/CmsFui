@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using CmsFuiApiV1.DatabaseContexts;
 using CmsFuiApiV1.Models;
@@ -62,17 +63,6 @@ namespace CmsFuiApiV1.Services
                 Course = svvCourse
             };
             
-            SemesterCourse helloSemesterCourse = new SemesterCourse()
-            {
-                Teacher = teacherAsma,
-                Course = hciCourse
-            };
-            
-            SemesterCourse wwwSemesterCourse = new SemesterCourse()
-            {
-                Teacher = teacherAqeel,
-                Course = svvCourse
-            };
 
             var studentSemester = new StudentSemester()
             {
@@ -80,9 +70,7 @@ namespace CmsFuiApiV1.Services
                 StudentRegisteredCourses = new List<SemesterCourse>()
                 {
                     hciSemesterCourse,
-                    wwwSemesterCourse,
-                    svvSemesterCourse,
-                    helloSemesterCourse
+                    svvSemesterCourse
                 }
             };
 
@@ -103,14 +91,38 @@ namespace CmsFuiApiV1.Services
             _dbContext.SaveChanges();
         }
 
-        public async Task<Student> GetRegisteredCourses(int id)
+        public async Task<List<SemesterCourse>> GetRegisteredCourses(int id)
         {
-            var stu = await _dbContext.Students.Include(x=>x.Semesters).FirstOrDefaultAsync(x => x.Id == id);
+            var stu = await _dbContext.Students
+                .Include(student=>student.CurrentSemester)
+                    .ThenInclude(semester=>semester.StudentRegisteredCourses)
+                        .ThenInclude(semesterCourse=>semesterCourse.Teacher)
+                .Include(student => student.CurrentSemester)
+                    .ThenInclude(semester => semester.StudentRegisteredCourses)
+                    .ThenInclude(semesterCourse => semesterCourse.Course)
+                .FirstOrDefaultAsync(x => x.Id == id);
 
             if (stu == null)
                 return null;
 
-            return stu;
+            return stu.CurrentSemester.StudentRegisteredCourses;
+        }
+
+
+        public async Task<List<StudentExam>> GetExams(int studentId, string courseId)
+        {
+            var result = await _dbContext.Students
+                .Include(student=>student.CurrentSemester)
+                .ThenInclude(semester=>semester.StudentRegisteredCourses)
+                .ThenInclude(reg=>reg.StudentExams)
+                .Include(student => student.CurrentSemester)
+                .ThenInclude(semester => semester.StudentRegisteredCourses)
+                .ThenInclude(sem=>sem.Course)
+                .FirstOrDefaultAsync(student => student.Id == studentId);
+
+            var results = result?.CurrentSemester?.StudentRegisteredCourses?.FirstOrDefault(x => x.Course.Code.Equals(courseId));
+
+            return results?.StudentExams;
         }
 
         public async Task<Student> GetStudentById(int id)

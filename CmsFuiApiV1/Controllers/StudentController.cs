@@ -17,7 +17,7 @@ namespace CmsFuiApiV1.Controllers
         {
             _studentService = new StudentService(dbContext);
             
-            _studentService.AddFakeStudent();
+            //_studentService.AddFakeStudent();
         }
 
         [HttpGet("test")]
@@ -26,9 +26,27 @@ namespace CmsFuiApiV1.Controllers
             return Ok("Helsso");
         }
 
-        public async Task<IActionResult> GetS([FromQuery] int studentId)
+        [HttpGet("GetCourseExams")]
+        public async Task<IActionResult> GetCourseExams([FromQuery] int studentId, [FromQuery] string courseCode)
         {
-            return Ok(await _studentService.GetRegisteredCourses(studentId));
+            var exams = await _studentService.GetExams(studentId, courseCode);
+
+            if (exams == null)
+                return BadRequest("Error");
+
+            return Ok(exams);
+        }
+
+        [HttpGet("GetRegisteredCourses")]
+        public async Task<IActionResult> GetRegisteredCourses([FromQuery] int studentId)
+        {
+
+            var res = await _studentService.GetRegisteredCourses(studentId);
+
+            if (res == null)
+                return BadRequest("Error");
+
+            return Ok(res);
         }
 
         [HttpPost("authenticate")]

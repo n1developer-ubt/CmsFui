@@ -16,7 +16,6 @@ namespace CmsFuiApiV1.Models.Data
         public string Program { get; set; }
         public string RollNo { get; set; }
 
-        
         [JsonIgnore]
         [IgnoreDataMember]
         public string Password { get; set; }
