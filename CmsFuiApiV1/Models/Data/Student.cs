@@ -8,6 +8,7 @@ namespace CmsFuiApiV1.Models.Data
 {
     public class Student
     {
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         [Key]
         public int Id { get; set; }
 

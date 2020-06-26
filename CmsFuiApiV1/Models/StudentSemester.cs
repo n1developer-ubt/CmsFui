@@ -7,6 +7,7 @@ namespace CmsFuiApiV1.Models
 {
     public class StudentSemester
     {
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         [Key]
         public int Id { get; set; }
 
@@ -14,6 +15,12 @@ namespace CmsFuiApiV1.Models
         public Semester Semester { get; set; }
 
         [ForeignKey("StudentRegisteredCoursesId")]
-        public List<SemesterCourse> StudentRegisteredCourses { get; set; }
+        public List<SemesterCourse> Courses { get; set; }
+
+        public string Title { get; set; }
+
+        public string Description { get; set; }
+
+        public double Gpa { get; set; }
     }
 }

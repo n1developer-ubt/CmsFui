@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using CmsFuiApiV1.Models.Data;
@@ -7,6 +8,7 @@ namespace CmsFuiApiV1.Models
 {
     public class SemesterCourse
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int Id { get; set; }
 
@@ -21,5 +23,9 @@ namespace CmsFuiApiV1.Models
 
         [ForeignKey("SemesterCourseId")]
         public List<Attendance> Attendances { get; set; }
+
+        public Boolean RegistrationAvailable { get; set; } = true;
+        public Boolean Registered { get; set; } = false;
+
     }
 }

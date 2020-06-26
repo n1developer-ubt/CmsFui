@@ -6,6 +6,7 @@ namespace CmsFuiApiV1.Models.Data
 {
     public class Teacher
     {
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         [Key]
         public int Id { get; set; }
 

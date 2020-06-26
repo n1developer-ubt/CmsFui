@@ -24,5 +24,10 @@ namespace CmsFui.Views
             this.entryPassword.HorizontalTextAlignment = TextAlignment.Center;
             this.EntryRollNo.HorizontalTextAlignment = TextAlignment.Center;
         }
+
+        private void BtnLogin_OnClicked(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
