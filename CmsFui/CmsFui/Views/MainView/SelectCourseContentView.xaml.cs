@@ -16,7 +16,8 @@ namespace CmsFui.Views.MainView
     public partial class SelectCourseContentView : ContentView
     {
         private StudentController _studentController = new StudentController();
-        public delegate void Action();
+
+        public delegate void Action(string code);
 
         public event Action CourseSelected;
 
@@ -27,9 +28,9 @@ namespace CmsFui.Views.MainView
             InitializeComponent();
             ListViewCourses.ItemsSource = Courses;
 
-            Courses.Add(new SemesterCourse(){Course = new Course(){Code = "123", Name = "SVV"}, Teacher = new Teacher(){Name = "Haris Javed"}});
-            Courses.Add(new SemesterCourse(){Course = new Course(){Code = "123"}});
-            Courses.Add(new SemesterCourse(){Course = new Course(){Code = "123"}});
+            Courses.Add(new SemesterCourse() { Course = new Course() { Code = "123", Name = "SVV" }, Teacher = new Teacher() { Name = "Haris Javed" } });
+            Courses.Add(new SemesterCourse() { Course = new Course() { Code = "123" } });
+            Courses.Add(new SemesterCourse() { Course = new Course() { Code = "123" } });
         }
 
         public async Task LoadCoursesAsync()
@@ -40,7 +41,7 @@ namespace CmsFui.Views.MainView
 
             int x = 0;
 
-            result.ForEach(sc=>Courses.Add(sc));
+            result.ForEach(sc => Courses.Add(sc));
         }
 
         public void LoadCourses()
@@ -53,6 +54,16 @@ namespace CmsFui.Views.MainView
             int x = 0;
 
             result.Result.ForEach(sc => Courses.Add(sc));
+        }
+
+        private void ListViewCourses_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            ListViewCourses.SelectedItem = null;
+
+            if (e.SelectedItem is SemesterCourse sc)
+            {
+                CourseSelected?.Invoke(sc.Course.Code);
+            }
         }
     }
 }

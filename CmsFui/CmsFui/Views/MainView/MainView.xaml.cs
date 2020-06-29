@@ -21,9 +21,9 @@ namespace CmsFui.Views.MainView
             InitializeComponent();
             SelectCourse = new SelectCourseContentView();
             SelectCourse.CourseSelected += SelectCourseOnCourseSelected;
-            MainContentView.Content = SelectCourse;
+            var ex = new ExamContentView();
+            MainContentView.Content = ex;
 
-            Task.Run(async () => await SelectCourse.LoadCoursesAsync());
 
             if (Global.CurrentStudent == null)
                 return;
@@ -31,7 +31,7 @@ namespace CmsFui.Views.MainView
             LblStudentName.Text = CurrentStudent.Name;
         }
 
-        private void SelectCourseOnCourseSelected()
+        private void SelectCourseOnCourseSelected(string code)
         {
             
         }
@@ -80,7 +80,11 @@ namespace CmsFui.Views.MainView
                 case 5:
                     break;
             }
-
         }
+    }
+
+    public enum PageType
+    {
+        CoursePortal
     }
 }

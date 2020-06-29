@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+xmlns:progressBar="clr-namespace:Syncfusion.XForms.ProgressBar;assembly=Syncfusion.SfProgressBar.XForms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:CmsFui.Controls;assembly=CmsFui"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+mc:Ignorable="d"
+             x:Class="CmsFui.Views.MainView.ExamContentView">
+    <ContentView.Content>
+        <StackLayout Padding="20,30,20,20">
+            <StackLayout 
+                VerticalOptions="FillAndExpand"
+                >
+                <border:SfBorder 
+                    BorderColor="{DynamicResource PrimaryColor}" 
+                    BorderWidth="2"
+                    VerticalOptions="CenterAndExpand"
+                    CornerRadius="3"
+                    >
+                    <ScrollView Padding="10">
+                        <ListView RowHeight="90" x:Name="ListViewExams" ItemsSource="{Binding StudentExams}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <border:SfBorder 
+                                            BorderColor="{DynamicResource LightWhite2}"
+                                            BorderWidth="3"
+                                            BackgroundColor="{DynamicResource LightWhite}"
+                                            Padding="10,5,10,5"
+                                            Margin="0,0,0,10"
+                                            >
+                                            <StackLayout 
+                                                 Orientation="Horizontal"
+                                            >
+                                                <StackLayout
+                                                     HorizontalOptions="StartAndExpand"
+                                                     VerticalOptions="Center"
+                                                     >
+                                                    <Label 
+                                                          Style="{DynamicResource PrimaryLabel}"
+                                                          Text="{Binding Exam.Name}"
+                                                          VerticalOptions="Center"
+                                                          HorizontalOptions="Start"
+                                                          FontSize="20"
+                                                          >
+                                                    </Label>
+                                                    <Label 
+                                                          Style="{DynamicResource PrimaryLabelLight}"
+                                                          Text="{Binding Exam.Date, StringFormat='{0:dd/MM/yyyy}'}"
+                                                          VerticalOptions="Center"
+                                                          HorizontalOptions="Start"
+                                                          FontSize="15"
+                                                          >
+
+                                                    </Label>
+                                                </StackLayout>
+                                                <StackLayout
+                                                     HorizontalOptions="EndAndExpand"
+                                                     VerticalOptions="CenterAndExpand"
+                                                     >
+                                                    <progressBar:SfCircularProgressBar 
+                                                        Progress="{Binding ObtainedMarks}"
+                                                        Minimum="0"
+                                                        Maximum="{Binding Exam.TotalMarks}"
+                                                        ProgressColor="{DynamicResource PrimaryColor}"
+                                                        TrackColor="{DynamicResource DarkPale}"
+                                                        AnimationDuration="1500"
+                                                        IndicatorInnerRadius="1"
+                                                        TrackInnerRadius="1"
+                                                        HeightRequest="55"
+                                                        WidthRequest="55"
+                                                        Margin="0"
+                                                            
+                                                    >
+                                                        <progressBar:SfCircularProgressBar.Content>
+                                                            <StackLayout 
+                                                                HorizontalOptions="Center" 
+                                                                Spacing="0" 
+                                                                VerticalOptions="Center">
+                                                                <Label 
+                                                                    Text="{Binding Percentage}"
+                                                                    HorizontalOptions="Center" 
+                                                                    Style="{DynamicResource PrimaryLabelLight}" 
+                                                                    FontSize="10">
+                                                                </Label>
+
+                                                                <StackLayout 
+                                                                    Orientation="Horizontal" 
+                                                                    Spacing="0"
+                                                                    HorizontalOptions="Center">
+                                                                    <Label 
+                                                                        HorizontalOptions="Start"
+                                                                        Text="{Binding ObtainedMarks, StringFormat='{0}/'}"
+                                                                        Style="{DynamicResource PrimaryLabelLight}" 
+                                                                        FontSize="10"
+                                                                    >
+                                                                    </Label>
+
+                                                                    <Label 
+                                                                        Text="{Binding Exam.TotalMarks}"
+                                                                        HorizontalOptions="Start" 
+                                                                        Style="{DynamicResource PrimaryLabelLight}" 
+                                                                        FontSize="10"
+                                                                    >
+                                                                    </Label>
+                                                                </StackLayout>
+                                                            </StackLayout>
+                                                        </progressBar:SfCircularProgressBar.Content>
+                                                    </progressBar:SfCircularProgressBar>
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </border:SfBorder>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </ScrollView>
+                </border:SfBorder>
+            </StackLayout>
+            <StackLayout 
+                Spacing="20" 
+                VerticalOptions="EndAndExpand" 
+                Margin="0,10,0,0"
+                >
+                <controls:PrimaryButton 
+                    Style="{DynamicResource PrimaryButton}" 
+                    TextColor="{DynamicResource White}" 
+                    BackgroundColor="{DynamicResource Pink}"
+                    OnReleaseBackgroundColor="{DynamicResource Pink}"
+                    OnReleaseTextColor="{DynamicResource White}"
+                    OnPressBackgroundColor="{DynamicResource White}"
+                    OnPressTextColor="{DynamicResource Pink}"
+                    BorderColor="{DynamicResource Pink}"
+                    CornerRadius="50"
+                    Text="Download Result Card"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    FontSize="18"
+                    Padding="10,0,10,0"
+                >
+                </controls:PrimaryButton>
+                <Label 
+                     Style="{DynamicResource LinkLabel}" 
+                     Text="Back to the Dashboard" 
+                     HorizontalOptions="Center" 
+                     VerticalOptions="Center"></Label>
+            </StackLayout>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>
