@@ -55,21 +55,59 @@
                 </StackLayout>
                 <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="Center" Orientation="Vertical" >
                     <Label Style="{DynamicResource PrimaryLabel}" Text="Welcome" FontSize="15" HorizontalOptions="Center"></Label>
-                    <Label Style="{DynamicResource PrimaryLabel}" Text="Usama Bin Tariq" FontSize="18" HorizontalOptions="Center"></Label>
-                    <Label Style="{DynamicResource LinkLabel}" Text="Logout" FontSize="15" HorizontalOptions="Center"></Label>
+                    <Label 
+                        Style="{DynamicResource PrimaryLabel}" 
+                        x:Name="LblStudentName" 
+                        Text="Usama Bin Tariq" 
+                        FontSize="18" 
+                        HorizontalOptions="Center"
+                        >
+                    </Label>
+                    <Label Style="{DynamicResource LinkLabel}" Text="Logout" FontSize="15" HorizontalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                NumberOfTapsRequired="1"
+                                Tapped="Logout_OnCLick"
+                                >
+                            </TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
                 </StackLayout>
             </StackLayout>
         </navigationdrawer:SfNavigationDrawer.DrawerHeaderView>
         <navigationdrawer:SfNavigationDrawer.DrawerContentView>
             <StackLayout VerticalOptions="Center">
-                <ScrollView BackgroundColor="{DynamicResource PrimaryColor}" VerticalOptions="FillAndExpand">
-                    <ListView IsEnabled="false" x:Name="MenuView" VerticalOptions="FillAndExpand" RowHeight="56" Margin="20,50,20,0">
+                <ScrollView 
+                    BackgroundColor="{DynamicResource PrimaryColor}" 
+                    VerticalOptions="FillAndExpand">
+                    <ListView 
+                        IsEnabled="false" 
+                        x:Name="MenuView" 
+                        VerticalOptions="FillAndExpand" 
+                        RowHeight="56"
+                        ItemSelected="MenuView_OnItemSelected"
+                        Margin="20,50,20,0">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell >
-                                <StackLayout  Margin="0,0,0,16" VerticalOptions="FillAndExpand" >
-                                    <border:SfBorder CornerRadius="10"  BackgroundColor="White" HeightRequest="50">
-                                        <Label Text="{Binding}" Style="{DynamicResource PrimaryLabel}" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+                                <StackLayout  
+                                    Margin="0,0,0,16" 
+                                    VerticalOptions="FillAndExpand" 
+                                    >
+                                    <border:SfBorder 
+                                        CornerRadius="10"  
+                                        BackgroundColor="White" 
+                                        HeightRequest="50"
+                                        >
+                                        <Label 
+                                            Text="{Binding}" 
+                                            Style="{DynamicResource PrimaryLabel}" 
+                                            FontSize="20" 
+                                            VerticalOptions="Center" 
+                                            HorizontalOptions="Center"
+                                            >
+
+                                        </Label>
                                     </border:SfBorder>
                                 </StackLayout>
                             </ViewCell>

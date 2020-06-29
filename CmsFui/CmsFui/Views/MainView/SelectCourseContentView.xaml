@@ -14,20 +14,56 @@
             </StackLayout>
             <StackLayout VerticalOptions="FillAndExpand" >
                 <ScrollView >
-                    <ListView RowHeight="100">
+                    <ListView 
+                        RowHeight="100" 
+                        x:Name="ListViewCourses"
+                        ItemsSource="{Binding Courses}"
+                        >
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                                    <border:SfBorder BackgroundColor="{DynamicResource DarkPale}" CornerRadius="3" BorderWidth="4" BorderColor="{DynamicResource PrimaryColor}" Padding="5,5,0,0" Margin="0,0,0,10">
-                                        <StackLayout HorizontalOptions="FillAndExpand" Orientation="Vertical" VerticalOptions="FillAndExpand">
-                                            <StackLayout VerticalOptions="FillAndExpand" >
-                                                <Label VerticalOptions="Start" Text="{Binding}" Style="{DynamicResource PrimaryLabel}" FontSize="20"></Label>
+                                    <border:SfBorder 
+                                        BackgroundColor="{DynamicResource DarkPale}" 
+                                        CornerRadius="3" 
+                                        BorderWidth="4" 
+                                        BorderColor="{DynamicResource PrimaryColor}" 
+                                        Padding="5,5,0,0" 
+                                        Margin="0,0,0,10">
+                                        <StackLayout 
+                                            HorizontalOptions="FillAndExpand" 
+                                            Orientation="Vertical" 
+                                            VerticalOptions="FillAndExpand">
+                                            <StackLayout 
+                                                VerticalOptions="FillAndExpand" >
+                                                <Label 
+                                                    VerticalOptions="Start" 
+                                                    Text="{Binding Course.Name}" 
+                                                    Style="{DynamicResource PrimaryLabel}" 
+                                                    FontSize="20">
 
+                                                </Label>
                                             </StackLayout>
-                                            <StackLayout VerticalOptions="End" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                                                <Label HorizontalOptions="StartAndExpand"  Style="{DynamicResource PrimaryLabelLight}" Text="{Binding}"></Label>
-                                                <border:SfBorder CornerRadius="20,0,0,0" BorderColor="{DynamicResource PrimaryColor}" BackgroundColor="{DynamicResource PrimaryColor}" Padding="5,0,0,0">
-                                                    <Label FontSize="18" Text="{Binding}" HorizontalOptions="Center" Style="{DynamicResource PrimaryLabelLight}" TextColor="{DynamicResource White}" ></Label>
+                                            <StackLayout 
+                                                VerticalOptions="End" 
+                                                HorizontalOptions="FillAndExpand" 
+                                                Orientation="Horizontal">
+                                                <Label 
+                                                    HorizontalOptions="StartAndExpand"  
+                                                    Style="{DynamicResource PrimaryLabelLight}" 
+                                                    Text="{Binding Course.Code}"></Label>
+                                                <border:SfBorder 
+                                                    CornerRadius="20,0,0,0" 
+                                                    BorderColor="{DynamicResource PrimaryColor}" 
+                                                    BackgroundColor="{DynamicResource PrimaryColor}" 
+                                                    Padding="5,0,0,0">
+                                                    <Label 
+                                                        FontSize="18" 
+                                                        Text="{Binding Teacher.Name}" 
+                                                        HorizontalOptions="Center" 
+                                                        Style="{DynamicResource PrimaryLabelLight}" 
+                                                        TextColor="{DynamicResource White}" 
+                                                        >
+                                                    </Label>
                                                 </border:SfBorder>
                                             </StackLayout>
                                         </StackLayout>
@@ -35,7 +71,7 @@
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
-                        <ListView.ItemsSource>
+                        <!--<ListView.ItemsSource>
                             <x:Array Type="{x:Type x:String}">
                                 <x:String>Course Portal</x:String>
                                 <x:String>Register Courses</x:String>
@@ -44,7 +80,7 @@
                                 <x:String>Fee Challan</x:String>
                                 <x:String>Setting</x:String>
                             </x:Array>
-                        </ListView.ItemsSource>
+                        </ListView.ItemsSource>-->
                     </ListView>
                 </ScrollView>
             </StackLayout>

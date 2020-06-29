@@ -9,26 +9,104 @@ xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart
              x:Class="CmsFui.Views.MainView.DashboardContentView" BackgroundColor="{DynamicResource LightWhite}">
     <ContentView.Content>
         <ScrollView>
-            <StackLayout Padding="10,20,10,20" Spacing="15">
-                <border:SfBorder Padding="11" HorizontalOptions="FillAndExpand" BorderColor="{DynamicResource PrimaryColor}" BorderWidth="2" CornerRadius="3">
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="10">
-                        <Image Source="pro" VerticalOptions="FillAndExpand" WidthRequest="120"></Image>
-                        <StackLayout Spacing="10" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-                            <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal" BackgroundColor="{DynamicResource White}" HeightRequest="25">
-                                <Label VerticalOptions="Center" Style="{DynamicResource PrimaryLabel}" FontSize="15" Text="Name: "></Label>
-                                <Label VerticalOptions="Center" Style="{DynamicResource PrimaryLabelLight}" Text="Usama Bin Tariq"></Label>
+            <StackLayout 
+                Padding="10,20,10,20" 
+                Spacing="15">
+                <border:SfBorder 
+                    Padding="11" 
+                    HorizontalOptions="FillAndExpand" 
+                    BorderColor="{DynamicResource PrimaryColor}" BorderWidth="2" CornerRadius="3">
+                    <StackLayout 
+                        Orientation="Horizontal" 
+                        HorizontalOptions="FillAndExpand" 
+                        Spacing="10">
+                        <Image 
+                            Source="pro" 
+                            VerticalOptions="FillAndExpand" 
+                            WidthRequest="120"
+                            ></Image>
+                        <StackLayout 
+                            Spacing="10" 
+                            VerticalOptions="FillAndExpand" 
+                            HorizontalOptions="FillAndExpand">
+                            <StackLayout 
+                                HorizontalOptions="FillAndExpand" 
+                                Orientation="Horizontal" 
+                                BackgroundColor="{DynamicResource White}"
+                                HeightRequest="25">
+                                <Label 
+                                    VerticalOptions="Center" 
+                                    Style="{DynamicResource PrimaryLabel}" 
+                                    FontSize="15" 
+                                    Text="Name: ">
+
+                                </Label>
+                                <Label
+                                    VerticalOptions="Center" 
+                                    Style="{DynamicResource PrimaryLabelLight}" 
+                                    Text=""
+                                    x:Name="LblName">
+
+                                </Label>
                             </StackLayout>
-                            <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal" BackgroundColor="{DynamicResource White}" HeightRequest="25">
-                                <Label VerticalOptions="Center" Style="{DynamicResource PrimaryLabel}" FontSize="15" Text="Roll No: "></Label>
-                                <Label VerticalOptions="Center" Style="{DynamicResource PrimaryLabelLight}" Text="F17BCSE053"></Label>
+                            <StackLayout 
+                                HorizontalOptions="FillAndExpand" 
+                                Orientation="Horizontal"
+                                BackgroundColor="{DynamicResource White}"
+                                HeightRequest="25">
+                                <Label 
+                                    VerticalOptions="Center" 
+                                    Style="{DynamicResource PrimaryLabel}"
+                                    FontSize="15" 
+                                    Text="Roll No: ">
+
+                                </Label>
+                                <Label 
+                                    VerticalOptions="Center" 
+                                    Style="{DynamicResource PrimaryLabelLight}" 
+                                    Text="F17BCSE053"
+                                    x:Name="LblRolNo"
+                                    >
+
+                                </Label>
                             </StackLayout>
-                            <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal" BackgroundColor="{DynamicResource White}" HeightRequest="25">
-                                <Label VerticalOptions="Center" Style="{DynamicResource PrimaryLabel}" FontSize="15" Text="Program: "></Label>
-                                <Label VerticalOptions="Center" Style="{DynamicResource PrimaryLabelLight}" Text="BCSE"></Label>
+                            <StackLayout 
+                                HorizontalOptions="FillAndExpand" 
+                                Orientation="Horizontal" 
+                                BackgroundColor="{DynamicResource White}" 
+                                HeightRequest="25">
+                                <Label 
+                                    VerticalOptions="Center" 
+                                    Style="{DynamicResource PrimaryLabel}" 
+                                    FontSize="15" 
+                                    Text="Program: ">
+
+                                </Label>
+                                <Label 
+                                    VerticalOptions="Center" 
+                                    Style="{DynamicResource PrimaryLabelLight}" 
+                                    Text="BCSE"
+                                    x:Name="LblProgram"
+                                    >
+                                </Label>
                             </StackLayout>
-                            <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal" BackgroundColor="{DynamicResource White}" HeightRequest="25">
-                                <Label VerticalOptions="Center" Style="{DynamicResource PrimaryLabel}" FontSize="15" Text="CGPA: "></Label>
-                                <Label VerticalOptions="Center" Style="{DynamicResource PrimaryLabelLight}" Text="3.67"></Label>
+                            <StackLayout 
+                                HorizontalOptions="FillAndExpand" 
+                                Orientation="Horizontal" 
+                                BackgroundColor="{DynamicResource White}" 
+                                HeightRequest="25">
+                                <Label 
+                                    VerticalOptions="Center" 
+                                    Style="{DynamicResource PrimaryLabel}" 
+                                    FontSize="15" 
+                                    Text="CGPA: ">
+                                </Label>
+                                <Label 
+                                    VerticalOptions="Center" 
+                                    Style="{DynamicResource PrimaryLabelLight}" 
+                                    Text=""
+                                    x:Name="LblGpa"
+                                    ></Label>
                             </StackLayout>
                         </StackLayout>
                     </StackLayout>

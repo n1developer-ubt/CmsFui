@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Syncfusion.Xamarin.Core" Version="18.1.0.55" />
     <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="18.1.0.55" />
     <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="18.1.0.55" />
@@ -50,9 +51,6 @@
     <EmbeddedResource Update="Views\MainView\DashboardContentView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\MainView\DashboardView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Views\MainView\MainView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -74,9 +72,5 @@
     <EmbeddedResource Update="Views\Successful.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controller\" />
   </ItemGroup>
 </Project>

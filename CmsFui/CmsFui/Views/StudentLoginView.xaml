@@ -26,10 +26,21 @@ mc:Ignorable="d"
                         <ColumnDefinition />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <border:SfBorder VerticalOptions="FillAndExpand" Grid.Column="0" Style="{DynamicResource PrimaryBorderStyle}">
-                        <combobox:SfComboBox Style="{DynamicResource PrimarySfComboBox}" SelectedIndex="0" IndicatorTextColor="Blue" WatermarkColor="Blue">
+                    <border:SfBorder 
+                        VerticalOptions="FillAndExpand" 
+                        Grid.Column="0" 
+                        Style="{DynamicResource PrimaryBorderStyle}">
+                        <combobox:SfComboBox 
+                            Style="{DynamicResource PrimarySfComboBox}" 
+                            SelectedIndex="0" 
+                            x:Name="CBYear" 
+                            IndicatorTextColor="Blue" 
+                            WatermarkColor="Blue"
+                            >
                             <combobox:SfComboBox.ComboBoxSource >
-                                <ListCollection:List x:TypeArguments="x:String" >
+                                <ListCollection:List 
+                                    x:TypeArguments="x:String" 
+                                    >
                                     <x:String>F17</x:String>
                                     <x:String>F16</x:String>
                                     <x:String>F15</x:String>
@@ -37,8 +48,16 @@ mc:Ignorable="d"
                             </combobox:SfComboBox.ComboBoxSource>
                         </combobox:SfComboBox>
                     </border:SfBorder>
-                    <border:SfBorder VerticalOptions="FillAndExpand" Grid.Column="1" Style="{DynamicResource PrimaryBorderStyle}">
-                        <combobox:SfComboBox Style="{DynamicResource PrimarySfComboBox}" SelectedIndex="0">
+                    <border:SfBorder 
+                        VerticalOptions="FillAndExpand" 
+                        Grid.Column="1" 
+                        Style="{DynamicResource PrimaryBorderStyle}"
+                        >
+                        <combobox:SfComboBox 
+                            Style="{DynamicResource PrimarySfComboBox}" 
+                            SelectedIndex="0"
+                            x:Name="CBProgram"
+                            >
                             <combobox:SfComboBox.ComboBoxSource >
                                 <ListCollection:List x:TypeArguments="x:String" >
                                     <x:String>BCSE</x:String>
@@ -48,12 +67,30 @@ mc:Ignorable="d"
                             </combobox:SfComboBox.ComboBoxSource>
                         </combobox:SfComboBox>
                     </border:SfBorder>
-                    <border:SfBorder VerticalOptions="FillAndExpand" Grid.Column="2" Style="{DynamicResource PrimaryBorderStyle}">
-                        <controls:PrimaryEntry VerticalOptions="CenterAndExpand" FontSize="15" x:Name="EntryRollNo" Text="053" Style="{DynamicResource PrimaryEntry}"></controls:PrimaryEntry>
+                    <border:SfBorder 
+                        VerticalOptions="FillAndExpand" 
+                        Grid.Column="2" 
+                        Style="{DynamicResource PrimaryBorderStyle}"
+                        >
+                        <controls:PrimaryEntry 
+                            VerticalOptions="CenterAndExpand"
+                            FontSize="15" 
+                            x:Name="EntryRollNo" 
+                            Placeholder="053" 
+                            Style="{DynamicResource PrimaryEntry}"
+                        >
+
+                        </controls:PrimaryEntry>
                     </border:SfBorder>
                 </Grid>
                 <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1"  Color="Black"  Grid.Row="3" Grid.ColumnSpan="3"></BoxView>
-                <Label VerticalOptions="Start" Grid.Row="4" Text="Password" Grid.ColumnSpan="3" Style="{DynamicResource PrimaryLabel}" HorizontalOptions="Center"></Label>
+                <Label
+                    VerticalOptions="Start" 
+                    Grid.Row="4" 
+                    Text="Password" 
+                    Grid.ColumnSpan="3" 
+                    Style="{DynamicResource PrimaryLabel}" 
+                    HorizontalOptions="Center"></Label>
                 <border:SfBorder Style="{DynamicResource PrimaryBorderStyle}">
                     <controls:PrimaryEntry x:Name="entryPassword" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"  Placeholder="*******" IsPassword="True"  Style="{DynamicResource PrimaryEntry}"></controls:PrimaryEntry>
                 </border:SfBorder>
@@ -72,7 +109,7 @@ mc:Ignorable="d"
             </StackLayout>
 
             <StackLayout VerticalOptions="End" Margin="0,10,0,0" Spacing="10">
-                
+
                 <Label Style="{DynamicResource LinkLabel}" Text="Back to who are you" Grid.Row="7" Grid.ColumnSpan="3" HorizontalTextAlignment="Center" VerticalOptions="End" Margin="0,0,0,20"></Label>
             </StackLayout>
         </StackLayout>

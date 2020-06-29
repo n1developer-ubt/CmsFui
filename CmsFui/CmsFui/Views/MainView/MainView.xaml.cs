@@ -4,7 +4,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using CmsFui.Models;
+using CmsFui.Models.Data;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -13,13 +14,26 @@ namespace CmsFui.Views.MainView
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainView : ContentPage
     {
-        ObservableCollection<MenuItem> menuItems = new ObservableCollection<MenuItem>();
-        public ObservableCollection<MenuItem> MenuItems { get { return menuItems; } }
+        public Student CurrentStudent => Global.CurrentStudent;
+        private SelectCourseContentView SelectCourse;
         public MainView()
         {
             InitializeComponent();
-            //hamburgerButton.Image = (FileImageSource)ImageSource.FromFile("hamburger_icon.png");
-            MainContentView.Content = new SettingContentView();
+            SelectCourse = new SelectCourseContentView();
+            SelectCourse.CourseSelected += SelectCourseOnCourseSelected;
+            MainContentView.Content = SelectCourse;
+
+            Task.Run(async () => await SelectCourse.LoadCoursesAsync());
+
+            if (Global.CurrentStudent == null)
+                return;
+
+            LblStudentName.Text = CurrentStudent.Name;
+        }
+
+        private void SelectCourseOnCourseSelected()
+        {
+            
         }
 
         void hamburgerButton_Clicked(object sender, EventArgs e)
@@ -27,15 +41,46 @@ namespace CmsFui.Views.MainView
             navigationDrawer.ToggleDrawer();
         }
 
-        private void listView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private void Logout_OnCLick(object sender, EventArgs e)
         {
-            // Your codes here
-            navigationDrawer.ToggleDrawer();
+            Application.Current.MainPage = new StudentLoginView();
         }
 
-        public class MenuItem
+        private int SelectedItem = -1;
+
+        private async void MenuView_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            public string ItemName { get; set; }
+            if (MenuView.SelectedItem == null)
+                return;
+
+            navigationDrawer.ToggleDrawer();
+
+            MenuView.SelectedItem = null;
+
+            SelectedItem = e.SelectedItemIndex;
+
+            switch (e.SelectedItemIndex)
+            {
+                case 0:
+                    MainContentView.Content = SelectCourse;
+                    await SelectCourse.LoadCoursesAsync();
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    MainContentView.Content = SelectCourse;
+                    await SelectCourse.LoadCoursesAsync();
+                    break;
+                case 3:
+                    MainContentView.Content = SelectCourse;
+                    await SelectCourse.LoadCoursesAsync();
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+            }
+
         }
     }
 }
