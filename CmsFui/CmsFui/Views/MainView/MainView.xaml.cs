@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CmsFui.Controller;
 using CmsFui.Models;
 using CmsFui.Models.Data;
 using Xamarin.Forms;
@@ -29,7 +30,7 @@ namespace CmsFui.Views.MainView
             var s = new RegisterCoursesContentView();
             MainContentView.Content = s;
 
-            Task.Run(async () => await s.LoadCourses()).Wait();
+            //Task.Run(async () => await s.LoadCourses()).Wait();
 
 
             if (Global.CurrentStudent == null)
@@ -100,6 +101,11 @@ namespace CmsFui.Views.MainView
                     break;
                 case 1:
                     SelectedPage = PageType.RegisterCourses;
+                    var r = new RegisterCoursesContentView();
+                    r.CourseRegisterUpdate += ROnCourseRegisterUpdate;
+                    r.ErrorOccured+=ROnErrorOccured;
+                    MainContentView.Content = r;
+                    await r.LoadCourses();
                     break;
                 case 2:
                     SelectedPage = PageType.Attendance;
@@ -117,6 +123,20 @@ namespace CmsFui.Views.MainView
                 case 5:
                     SelectedPage = PageType.Setting;
                     break;
+            }
+        }
+
+        private void ROnErrorOccured(string s)
+        {
+            DisplayAlert(s, s, s);
+        }
+
+        private async void ROnCourseRegisterUpdate(StudentController.UpdateResult result)
+        {
+            await DisplayAlert(result.ToString(), "", "");
+            if (result == StudentController.UpdateResult.Updated)
+            {
+                await Navigation.PushModalAsync(new Successful());
             }
         }
     }

@@ -13,68 +13,65 @@ xmlns:pulltorefresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Sy
     <ContentView.Content >
         <StackLayout Padding="20,40,20,40">
             <StackLayout VerticalOptions="Fill" >
-                <ScrollView >
-                    <pulltorefresh:SfPullToRefresh
-                       x:Name="pullToRefresh"
-                       Refreshing="PullToRefresh_OnRefreshing">
-                        <pulltorefresh:SfPullToRefresh.PullableContent>
-                            <xForms:SfListView 
+                <ScrollView VerticalOptions="Fill"  >
+                    <xForms:SfListView 
                                 x:Name="ListViewCourses"
+                                VerticalOptions="StartAndExpand"
                                 ItemSize="100" 
                                 RowSpacing="10" 
                                 ItemSpacing="0,10,0,0"
                                 SelectionMode="Multiple"
                                 SelectionBackgroundColor="{DynamicResource DarkPale}">
-                                <xForms:SfListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <ViewCell >
-                                            <border:SfBorder
+                        <xForms:SfListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell >
+                                    <border:SfBorder
                                             CornerRadius="3" 
                                             BorderWidth="4" 
                                             BorderColor="{DynamicResource PrimaryColor}" 
                                             Padding="5,5,0,0" >
-                                                <StackLayout 
+                                        <StackLayout 
                                             HorizontalOptions="FillAndExpand" 
                                             Orientation="Vertical" 
                                             VerticalOptions="FillAndExpand">
-                                                    <StackLayout 
+                                            <StackLayout 
                                                 VerticalOptions="FillAndExpand" >
-                                                        <Label 
+                                                <Label 
                                                     VerticalOptions="Start" 
                                                     Text="{Binding Course.Name}" 
                                                     Style="{DynamicResource PrimaryLabel}" 
                                                     FontSize="20">
 
-                                                        </Label>
+                                                </Label>
 
-                                                    </StackLayout>
-                                                    <StackLayout 
+                                            </StackLayout>
+                                            <StackLayout 
                                                 VerticalOptions="End" 
                                                 HorizontalOptions="FillAndExpand" 
                                                 Orientation="Horizontal">
-                                                        <Label 
+                                                <Label 
                                                     HorizontalOptions="StartAndExpand"  
                                                     Style="{DynamicResource PrimaryLabelLight}" 
                                                     Text="{Binding Course.Code}"></Label>
-                                                        <border:SfBorder 
+                                                <border:SfBorder 
                                                     CornerRadius="20,0,0,0" 
                                                     BorderColor="{DynamicResource PrimaryColor}" 
                                                     BackgroundColor="{DynamicResource PrimaryColor}" 
                                                     Padding="5,0,0,0">
-                                                            <Label 
+                                                    <Label 
                                                         FontSize="18" 
                                                         Text="{Binding Teacher.Name}" 
                                                         HorizontalOptions="Center" 
                                                         Style="{DynamicResource PrimaryLabelLight}" 
                                                         TextColor="{DynamicResource White}" ></Label>
-                                                        </border:SfBorder>
-                                                    </StackLayout>
-                                                </StackLayout>
-                                            </border:SfBorder>
-                                        </ViewCell>
-                                    </DataTemplate>
-                                </xForms:SfListView.ItemTemplate>
-                                <!--<xForms:SfListView.ItemsSource>
+                                                </border:SfBorder>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </border:SfBorder>
+                                </ViewCell>
+                            </DataTemplate>
+                        </xForms:SfListView.ItemTemplate>
+                        <!--<xForms:SfListView.ItemsSource>
                             <x:Array Type="{x:Type x:String}">
                                 <x:String>Course Portal</x:String>
                                 <x:String>Register Courses</x:String>
@@ -84,9 +81,7 @@ xmlns:pulltorefresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Sy
                                 <x:String>Setting</x:String>
                             </x:Array>
                         </xForms:SfListView.ItemsSource>-->
-                            </xForms:SfListView>
-                        </pulltorefresh:SfPullToRefresh.PullableContent>
-                    </pulltorefresh:SfPullToRefresh>
+                    </xForms:SfListView>
                 </ScrollView>
             </StackLayout>
             <StackLayout VerticalOptions="EndAndExpand" Spacing="20">

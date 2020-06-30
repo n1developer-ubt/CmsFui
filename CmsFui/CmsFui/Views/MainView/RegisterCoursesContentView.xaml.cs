@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using CmsFui.Controller;
 using CmsFui.Models;
 using CmsFui.Models.Data;
+using Syncfusion.DataSource.Extensions;
+using Syncfusion.ListView.XForms;
 using Syncfusion.SfPullToRefresh.XForms;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -17,10 +19,20 @@ namespace CmsFui.Views.MainView
     public partial class RegisterCoursesContentView : ContentView, BackableContentView
     {
         private readonly StudentController _studentController;
-        public ObservableCollection<SemesterCourse> Courses;
+        public ObservableCollection<SemesterCourse> Courses { get; }
+
+        public delegate void ActionPerformed(StudentController.UpdateResult result);
+
+        public delegate void Error(string s);
+
+        public event Error ErrorOccured;
+
+        public event ActionPerformed CourseRegisterUpdate;
+
         public RegisterCoursesContentView()
         {
             InitializeComponent();
+            this.BindingContext = this;
             _studentController = new StudentController();
             Courses = new ObservableCollection<SemesterCourse>();
             ListViewCourses.ItemsSource = Courses;
@@ -33,7 +45,17 @@ namespace CmsFui.Views.MainView
 
         private async void btnSubmit_Clicked(object sender, EventArgs e)
         {
+            if (ListViewCourses.SelectedItems.Count == 0)
+            {
+                ErrorOccured?.Invoke("Please Selected Atleast One Subject");
+                return;
+            }
 
+            var coursesToRegister = ListViewCourses.SelectedItems.Select(x => ((SemesterCourse) x).Id).ToList();
+
+            var result = await _studentController.RegisterCourses(Global.CurrentStudent.Id, coursesToRegister);
+
+            CourseRegisterUpdate?.Invoke(result);
         }
 
         public async Task LoadCourses()
