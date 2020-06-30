@@ -13,6 +13,7 @@
             <Label 
                 Text="Attendance"
                 x:Name="LabelCourseName"
+                HorizontalTextAlignment="Center"
                 HorizontalOptions="CenterAndExpand"
                 Style="{DynamicResource PrimaryLabel}"
                 />

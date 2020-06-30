@@ -20,6 +20,7 @@
                    Style="{DynamicResource PrimaryLabel}" 
                    FontSize="33" 
                    HorizontalOptions="StartAndExpand"
+                   x:Name="LabelText"
                    >
             </Label>
             <Label 
@@ -29,6 +30,11 @@
                 HorizontalOptions="Center"  
                 Margin="0,0,0,20"
             >
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer
+                        NumberOfTapsRequired="1"
+                        Tapped="TapGestureRecognizer_OnTapped"></TapGestureRecognizer>
+                </Label.GestureRecognizers>
             </Label>
         </StackLayout>
     </ContentPage.Content>

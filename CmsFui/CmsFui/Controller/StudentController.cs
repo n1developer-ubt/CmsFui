@@ -13,7 +13,7 @@ namespace CmsFui.Controller
 {
     public class StudentController
     {
-        private const string RestApiAddress = "http://192.168.8.102:5000";
+        private const string RestApiAddress = "http://192.168.8.104:5000";
         private const string RestApiVersion = "v1";
         private const string Controller = "student";
 

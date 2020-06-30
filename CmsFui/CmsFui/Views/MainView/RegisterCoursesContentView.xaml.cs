@@ -21,7 +21,7 @@ namespace CmsFui.Views.MainView
         private readonly StudentController _studentController;
         public ObservableCollection<SemesterCourse> Courses { get; }
 
-        public delegate void ActionPerformed(StudentController.UpdateResult result);
+        public delegate void ActionPerformed(StudentController.UpdateResult result, string message);
 
         public delegate void Error(string s);
 
@@ -55,7 +55,7 @@ namespace CmsFui.Views.MainView
 
             var result = await _studentController.RegisterCourses(Global.CurrentStudent.Id, coursesToRegister);
 
-            CourseRegisterUpdate?.Invoke(result);
+            CourseRegisterUpdate?.Invoke(result, result==StudentController.UpdateResult.Updated? "Your selected courses has been registered Successfully":"Registration Failed");
         }
 
         public async Task LoadCourses()

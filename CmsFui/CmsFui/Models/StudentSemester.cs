@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using CmsFui.Models.Data;
+using Newtonsoft.Json;
 
 namespace CmsFui.Models
 {
@@ -16,5 +17,6 @@ namespace CmsFui.Models
         public string Description { get; set; }
 
         public double Gpa { get; set; }
+
     }
 }

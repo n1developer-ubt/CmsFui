@@ -27,7 +27,7 @@ namespace CmsFui.Views.MainView
             _selectCourse = new SelectCourseContentView();
             _selectCourse.CourseSelected += SelectCourseOnCourseSelected;
 
-            var s = new RegisterCoursesContentView();
+            var s = new ResultContentView();
             MainContentView.Content = _dashboard;
 
             if (Global.CurrentStudent == null)
@@ -116,14 +116,19 @@ namespace CmsFui.Views.MainView
                     break;
                 case 3:
                     SelectedPage = PageType.Result;
-                    MainContentView.Content = _selectCourse;
-                    await _selectCourse.LoadCoursesAsync();
+                    var rv = new ResultContentView();
+                    MainContentView.Content = rv;
+                    await rv.Load();
                     break;
                 case 4:
                     SelectedPage = PageType.FeeChallan;
                     break;
                 case 5:
                     SelectedPage = PageType.Setting;
+                    var s = new SettingContentView();
+                    MainContentView.Content = s;
+                    s.Updated += ROnCourseRegisterUpdate;
+                    await s.Load();
                     break;
             }
         }
@@ -133,13 +138,17 @@ namespace CmsFui.Views.MainView
             DisplayAlert("Error", s, "Ok");
         }
 
-        private async void ROnCourseRegisterUpdate(StudentController.UpdateResult result)
+        private async void ROnCourseRegisterUpdate(StudentController.UpdateResult result, string e)
         {
-            await DisplayAlert(result.ToString(), "s", "s");
             if (result == StudentController.UpdateResult.Updated)
             {
-                await Navigation.PushModalAsync(new Successful());
+                var suc = new Successful(e);
+                await Navigation.PushModalAsync(suc);
+                await suc.Wait();
+                return;
             }
+
+            await DisplayAlert("Error", e, "Ok");
         }
     }
 

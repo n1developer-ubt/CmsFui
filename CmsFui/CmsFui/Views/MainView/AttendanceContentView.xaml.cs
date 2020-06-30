@@ -22,8 +22,8 @@ namespace CmsFui.Views.MainView
         public AttendanceContentView(string courseName)
         {
             _courseName = courseName;
-            LabelCourseName.Text = courseName;
             InitializeComponent();
+            LabelCourseName.Text = courseName;
             _studentController = new StudentController();
         }
 

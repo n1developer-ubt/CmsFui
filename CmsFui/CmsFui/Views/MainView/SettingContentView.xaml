@@ -45,6 +45,7 @@
                                 VerticalOptions="Center"
                                 HorizontalOptions="FillAndExpand"
                                 Placeholder="Name"
+                                x:Name="Name"
                             >
                             </controls:PrimaryEntry>
                             <Image 
@@ -82,10 +83,11 @@
                                 VerticalOptions="Center"
                                 HorizontalOptions="FillAndExpand"
                                 Placeholder="Password"
+                                x:Name="Password"
                             >
                             </controls:PrimaryEntry>
                             <Image 
-                                Source="fui"
+                                Source="icoedit"
                                 WidthRequest="20"
                                 HeightRequest="20"
                                 VerticalOptions="Center"
@@ -118,10 +120,11 @@
                                 VerticalOptions="Center"
                                 HorizontalOptions="FillAndExpand"
                                 Placeholder="Email"
+                                x:Name="Email"
                             >
                             </controls:PrimaryEntry>
                             <Image 
-                                Source="fui"
+                                Source="icoedit"
                                 WidthRequest="20"
                                 HeightRequest="20"
                                 VerticalOptions="Center"
