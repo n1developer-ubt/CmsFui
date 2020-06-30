@@ -13,7 +13,7 @@ namespace CmsFui.Controller
 {
     public class StudentController
     {
-        private const string RestApiAddress = "http://192.168.8.100:5000";
+        private const string RestApiAddress = "http://192.168.8.102:5000";
         private const string RestApiVersion = "v1";
         private const string Controller = "student";
 
@@ -103,7 +103,7 @@ namespace CmsFui.Controller
 
             var result = await res.Content.ReadAsStringAsync();
 
-            Console.Write("\n\n\n\n\n\n\\n\n\n"+result+ "\n\n\n\n\n\n\\n\n\n");
+            //Console.Write("\n\n\n\n\n\n\\n\n\n"+result+ "\n\n\n\n\n\n\\n\n\n");
 
             return JsonConvert.DeserializeObject<List<SemesterCourse>>(result);
         }

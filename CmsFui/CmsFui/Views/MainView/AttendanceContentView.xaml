@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:progressBar="clr-namespace:Syncfusion.XForms.ProgressBar;assembly=Syncfusion.SfProgressBar.XForms"
+             xmlns:xForms="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+             mc:Ignorable="d"
+             x:Class="CmsFui.Views.MainView.AttendanceContentView">
+    <ContentView.Content>
+        <StackLayout Padding="10">
+            <Label 
+                Text="Attendance"
+                x:Name="LabelCourseName"
+                HorizontalOptions="CenterAndExpand"
+                Style="{DynamicResource PrimaryLabel}"
+                />
+
+            <xForms:SfChart
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                x:Name="ChartVisual"
+                >
+                <xForms:SfChart.PrimaryAxis>
+                    <xForms:CategoryAxis>
+
+                    </xForms:CategoryAxis>
+                </xForms:SfChart.PrimaryAxis>
+                <xForms:SfChart.SecondaryAxis>
+                    <xForms:NumericalAxis>
+
+                    </xForms:NumericalAxis>
+                </xForms:SfChart.SecondaryAxis>
+            </xForms:SfChart>
+
+            <progressBar:SfCircularProgressBar 
+                Minimum="0"
+                Maximum="100"
+                ProgressColor="{DynamicResource PrimaryColor}"
+                TrackColor="{DynamicResource Pink}"
+                AnimationDuration="1500"
+                IndicatorInnerRadius="0.5"
+                TrackInnerRadius="0.5"
+                Margin="0"
+                x:Name="CpbPresent"                                            
+            >
+
+            </progressBar:SfCircularProgressBar>
+
+            <StackLayout Spacing="20" Margin="0,20,0,0">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer 
+                        NumberOfTapsRequired="1" 
+                        Tapped="TapGestureRecognizer_OnTapped"
+                    />
+                </StackLayout.GestureRecognizers>
+                <border:SfBorder Style="{DynamicResource PrimaryShadowBorder}" HeightRequest="50">
+                    <Label Text="Back to the Dashboard" FontSize="18" VerticalOptions="Center" HorizontalOptions="Center" FontFamily="{DynamicResource DefaultRegular}" TextColor="{DynamicResource PrimaryColor}">
+                    </Label>
+                </border:SfBorder>
+            </StackLayout>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

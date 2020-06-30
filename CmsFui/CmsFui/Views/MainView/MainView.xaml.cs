@@ -28,10 +28,7 @@ namespace CmsFui.Views.MainView
             _selectCourse.CourseSelected += SelectCourseOnCourseSelected;
 
             var s = new RegisterCoursesContentView();
-            MainContentView.Content = s;
-
-            //Task.Run(async () => await s.LoadCourses()).Wait();
-
+            MainContentView.Content = _dashboard;
 
             if (Global.CurrentStudent == null)
                 return;
@@ -68,6 +65,11 @@ namespace CmsFui.Views.MainView
                     MainContentView.Content = exams;
                     await exams.LoadExams(code);
                     break;
+                case PageType.Attendance:
+                    var att = new AttendanceContentView(courseName);
+                    MainContentView.Content = att;
+                    await att.Load(code);
+                    break;
             }
         }
 
@@ -97,13 +99,13 @@ namespace CmsFui.Views.MainView
                 case 0:
                     SelectedPage = PageType.CoursePortal;
                     MainContentView.Content = _selectCourse;
-                    Task.Run(async () => await _selectCourse.LoadCoursesAsync()).Wait();
+                    await _selectCourse.LoadCoursesAsync();
                     break;
                 case 1:
                     SelectedPage = PageType.RegisterCourses;
                     var r = new RegisterCoursesContentView();
                     r.CourseRegisterUpdate += ROnCourseRegisterUpdate;
-                    r.ErrorOccured+=ROnErrorOccured;
+                    r.ErrorOccured += ROnErrorOccured;
                     MainContentView.Content = r;
                     await r.LoadCourses();
                     break;
@@ -128,12 +130,12 @@ namespace CmsFui.Views.MainView
 
         private void ROnErrorOccured(string s)
         {
-            DisplayAlert(s, s, s);
+            DisplayAlert("Error", s, "Ok");
         }
 
         private async void ROnCourseRegisterUpdate(StudentController.UpdateResult result)
         {
-            await DisplayAlert(result.ToString(), "", "");
+            await DisplayAlert(result.ToString(), "s", "s");
             if (result == StudentController.UpdateResult.Updated)
             {
                 await Navigation.PushModalAsync(new Successful());

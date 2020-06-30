@@ -12,17 +12,17 @@
             <StackLayout Margin="0,0,0,20" >
                 <Label Text="Select course" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" Style="{DynamicResource PrimaryLabel}" FontFamily="{DynamicResource DefaultLight}"></Label>
             </StackLayout>
-            <StackLayout VerticalOptions="FillAndExpand" >
-                <ScrollView VerticalOptions="Fill" >
+            <StackLayout VerticalOptions="FillAndExpand">
+                <ScrollView VerticalOptions="FillAndExpand" >
                     <ListView 
-                        RowHeight="100" 
+                        RowHeight="100"
                         x:Name="ListViewCourses"
                         IsPullToRefreshEnabled="True"
-                        VerticalOptions="CenterAndExpand"
+                        VerticalOptions="FillAndExpand"
+                        CachingStrategy="RetainElement"
                         Refreshing="ListViewCourses_OnRefreshing"
                         ItemSelected="ListViewCourses_OnItemSelected"
-                        
-                        >
+                    >
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>

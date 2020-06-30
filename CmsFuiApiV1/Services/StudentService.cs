@@ -24,11 +24,11 @@ namespace CmsFuiApiV1.Services
             _dbContext.Database.EnsureDeleted();
             _dbContext.Database.EnsureCreated();
 
-            Teacher teacherAsma  = new Teacher()
+            Teacher teacherAsma = new Teacher()
             {
                 Name = "Asma Naveed"
             };
-            
+
             Teacher teacherAqeel = new Teacher()
             {
                 Name = "Muhammad Aqeel"
@@ -59,7 +59,7 @@ namespace CmsFuiApiV1.Services
                 Date = DateTime.Now,
                 TotalMarks = 10
             };
-            
+
             Exam exam2 = new Exam()
             {
                 Name = "Assignment#1",
@@ -72,7 +72,7 @@ namespace CmsFuiApiV1.Services
                 ObtainedMarks = 8,
                 Exam = exam
             };
-            
+
             StudentExam stuExam2 = new StudentExam()
             {
                 ObtainedMarks = 8,
@@ -90,9 +90,9 @@ namespace CmsFuiApiV1.Services
                     stuExam,
                     stuExam
                 },
-                Attendances = GetRandomAttendances(100)
+                Attendances = GetRandomAttendances(200)
             };
-            
+
             SemesterCourse svvSemesterCourse = new SemesterCourse()
             {
                 Teacher = teacherAqeel,
@@ -101,9 +101,9 @@ namespace CmsFuiApiV1.Services
                 {
                     stuExam2
                 },
-                Attendances = GetRandomAttendances(100)
+                Attendances = GetRandomAttendances(200)
             };
-            
+
 
             var studentSemester = new StudentSemester()
             {
@@ -117,7 +117,7 @@ namespace CmsFuiApiV1.Services
                 Title = "Semester #6",
                 Gpa = 3.8
             };
-            
+
             Student newStudent = new Student
             {
                 Email = "usamat37@gmail.com",
@@ -127,7 +127,7 @@ namespace CmsFuiApiV1.Services
                 Year = 17,
                 Program = "BCSE",
                 Season = "F",
-                Semesters =  new List<StudentSemester>()
+                Semesters = new List<StudentSemester>()
                 {
                     studentSemester,
                     studentSemester,
@@ -171,10 +171,10 @@ namespace CmsFuiApiV1.Services
 
         public async Task<List<StudentSemester>> GetSemesterCoursesResult(int studentId)
         {
-            var stu =await _dbContext.Students.Include(stu => stu.Semesters)
+            var stu = await _dbContext.Students.Include(stu => stu.Semesters)
                 .FirstOrDefaultAsync(stu => stu.Id == studentId);
 
-            return stu?.Semesters.Select(s=>new StudentSemester()
+            return stu?.Semesters.Select(s => new StudentSemester()
             {
                 Description = s.Description,
                 Gpa = s.Gpa,
@@ -186,11 +186,11 @@ namespace CmsFuiApiV1.Services
         {
             List<Attendance> at = new List<Attendance>();
 
-            for(int x = 0; x < count; x++)
+            for (int x = 0; x < count; x++)
             {
                 var att = new Faker<Attendance>()
-                    .RuleFor(x=>x.Date, f=>f.Date.Recent())
-                    .RuleFor(x=>x.Present, f=>50 < new Random().Next(0,100));
+                    .RuleFor(x => x.Date, f => f.Date.Between(new DateTime(2019, 6, 3), DateTime.Now))
+                    .RuleFor(x => x.Present, f => 50 < new Random().Next(0, 100));
                 at.Add(att);
             }
 
@@ -200,9 +200,9 @@ namespace CmsFuiApiV1.Services
         public async Task<List<SemesterCourse>> GetRegisteredCourses(int id)
         {
             var stu = await _dbContext.Students
-                .Include(student=>student.CurrentSemester)
-                    .ThenInclude(semester=>semester.Courses)
-                        .ThenInclude(semesterCourse=>semesterCourse.Teacher)
+                .Include(student => student.CurrentSemester)
+                    .ThenInclude(semester => semester.Courses)
+                        .ThenInclude(semesterCourse => semesterCourse.Teacher)
                 .Include(student => student.CurrentSemester)
                     .ThenInclude(semester => semester.Courses)
                         .ThenInclude(semesterCourse => semesterCourse.Course)
@@ -211,7 +211,7 @@ namespace CmsFuiApiV1.Services
             if (stu == null)
                 return null;
 
-            return stu.CurrentSemester.Courses.Where(c=>c.Registered).ToList();
+            return stu.CurrentSemester.Courses.Where(c => c.Registered).ToList();
         }
 
         public async Task RegisterCourses(int studentId, List<int> coursesToRegister)
@@ -228,7 +228,7 @@ namespace CmsFuiApiV1.Services
                     continue;
                 }
 
-                if(!course.RegistrationAvailable)
+                if (!course.RegistrationAvailable)
                     continue;
 
                 course.Registered = true;
@@ -244,13 +244,13 @@ namespace CmsFuiApiV1.Services
             var cs = await _dbContext.Students
                 .Include(stu => stu.CurrentSemester)
                 .ThenInclude(sem => sem.Courses)
-                .ThenInclude(c=>c.Course)
+                .ThenInclude(c => c.Course)
                 .Include(stu => stu.CurrentSemester)
                 .ThenInclude(sem => sem.Courses)
-                .ThenInclude(c=>c.Teacher)
-                .FirstOrDefaultAsync(stu=>stu.Id == studentId);
-            
-            return cs?.CurrentSemester?.Courses?.Select(c=>new SemesterCourse(){Id = c.Id, Course = c.Course, Teacher = c.Teacher, RegistrationAvailable = c.RegistrationAvailable}).Where(c => !c.Registered && c.RegistrationAvailable).ToList();
+                .ThenInclude(c => c.Teacher)
+                .FirstOrDefaultAsync(stu => stu.Id == studentId);
+
+            return cs?.CurrentSemester?.Courses?.Select(c => new SemesterCourse() { Id = c.Id, Course = c.Course, Teacher = c.Teacher, RegistrationAvailable = c.RegistrationAvailable }).Where(c => !c.Registered && c.RegistrationAvailable).ToList();
         }
 
         public async Task<List<Attendance>> GetAttendance(int studentId, string courseId)
@@ -272,13 +272,13 @@ namespace CmsFuiApiV1.Services
         public async Task<List<StudentExam>> GetExams(int studentId, string courseId)
         {
             var result = await _dbContext.Students
-                .Include(student=>student.CurrentSemester)
-                .ThenInclude(semester=>semester.Courses)
-                .ThenInclude(reg=>reg.StudentExams)
-                .ThenInclude(stuExam=>stuExam.Exam)
                 .Include(student => student.CurrentSemester)
                 .ThenInclude(semester => semester.Courses)
-                .ThenInclude(sem=>sem.Course)
+                .ThenInclude(reg => reg.StudentExams)
+                .ThenInclude(stuExam => stuExam.Exam)
+                .Include(student => student.CurrentSemester)
+                .ThenInclude(semester => semester.Courses)
+                .ThenInclude(sem => sem.Course)
                 .FirstOrDefaultAsync(student => student.Id == studentId);
 
             var results = result?.CurrentSemester?.Courses?.FirstOrDefault(x => x.Course.Code.Equals(courseId));
@@ -288,7 +288,7 @@ namespace CmsFuiApiV1.Services
 
         public async Task<Student> GetStudentById(int id)
         {
-            var result = await _dbContext.Students.Select(x=>new Student()
+            var result = await _dbContext.Students.Select(x => new Student()
             {
                 Id = x.Id,
                 Email = x.Email,

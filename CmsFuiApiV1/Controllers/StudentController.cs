@@ -18,7 +18,7 @@ namespace CmsFuiApiV1.Controllers
         {
             _studentService = new StudentService(dbContext);
 
-            _studentService.AddFakeStudent();
+            //_studentService.AddFakeStudent();
         }
 
         [HttpGet("test")]

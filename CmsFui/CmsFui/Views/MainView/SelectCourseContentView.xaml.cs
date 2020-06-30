@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using CmsFui.Controller;
 using CmsFui.Models;
 using CmsFui.Models.Data;
+using Syncfusion.DataSource.Extensions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -21,7 +22,7 @@ namespace CmsFui.Views.MainView
 
         public event Action CourseSelected;
 
-        public ObservableCollection<SemesterCourse> Courses = new ObservableCollection<SemesterCourse>();
+        public ObservableCollection<SemesterCourse> Courses { get; set; }= new ObservableCollection<SemesterCourse>();
 
         private string _courseCode = "";
 
@@ -29,10 +30,6 @@ namespace CmsFui.Views.MainView
         {
             InitializeComponent();
             ListViewCourses.ItemsSource = Courses;
-
-            Courses.Add(new SemesterCourse() { Course = new Course() { Code = "123", Name = "SVV" }, Teacher = new Teacher() { Name = "Haris Javed" } });
-            Courses.Add(new SemesterCourse() { Course = new Course() { Code = "123" } });
-            Courses.Add(new SemesterCourse() { Course = new Course() { Code = "123" } });
         }
 
         public async Task LoadCoursesAsync()
@@ -40,8 +37,9 @@ namespace CmsFui.Views.MainView
             Courses.Clear();
 
             var result = await _studentController.GetCourses(Global.CurrentStudent.Id);
-
+            
             result.ForEach(sc => Courses.Add(sc));
+
         }
 
         public void LoadCourses()

@@ -86,19 +86,19 @@
                         RowHeight="56"
                         ItemSelected="MenuView_OnItemSelected"
                         Margin="20,50,20,0">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell >
-                                <StackLayout  
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell >
+                                    <StackLayout  
                                     Margin="0,0,0,16" 
                                     VerticalOptions="FillAndExpand" 
                                     >
-                                    <border:SfBorder 
+                                        <border:SfBorder 
                                         CornerRadius="10"  
                                         BackgroundColor="White" 
                                         HeightRequest="50"
                                         >
-                                        <Label 
+                                            <Label 
                                             Text="{Binding}" 
                                             Style="{DynamicResource PrimaryLabel}" 
                                             FontSize="20" 
@@ -106,24 +106,24 @@
                                             HorizontalOptions="Center"
                                             >
 
-                                        </Label>
-                                    </border:SfBorder>
-                                </StackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
+                                            </Label>
+                                        </border:SfBorder>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
 
-                    <ListView.ItemsSource>
-                        <x:Array Type="{x:Type x:String}">
-                            <x:String>Course Portal</x:String>
-                            <x:String>Register Courses</x:String>
-                            <x:String>Attendance</x:String>
-                            <x:String>Result</x:String>
-                            <x:String>Fee Challan</x:String>
-                            <x:String>Setting</x:String>
-                        </x:Array>
-                    </ListView.ItemsSource>
-                </ListView>
+                        <ListView.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Course Portal</x:String>
+                                <x:String>Register Courses</x:String>
+                                <x:String>Attendance</x:String>
+                                <x:String>Result</x:String>
+                                <x:String>Fee Challan</x:String>
+                                <x:String>Setting</x:String>
+                            </x:Array>
+                        </ListView.ItemsSource>
+                    </ListView>
                 </ScrollView>
             </StackLayout>
         </navigationdrawer:SfNavigationDrawer.DrawerContentView>
