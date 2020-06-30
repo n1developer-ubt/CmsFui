@@ -9,16 +9,19 @@
              x:Class="CmsFui.Views.MainView.SelectCourseContentView">
     <ContentView.Content>
         <StackLayout Padding="20,20,20,40">
-            <StackLayout VerticalOptions="StartAndExpand" Margin="0,0,0,20">
-                <Label Text="Select course" VerticalOptions="Center" HorizontalOptions="Center" Style="{DynamicResource PrimaryLabel}" FontFamily="{DynamicResource DefaultLight}"></Label>
+            <StackLayout Margin="0,0,0,20" >
+                <Label Text="Select course" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" Style="{DynamicResource PrimaryLabel}" FontFamily="{DynamicResource DefaultLight}"></Label>
             </StackLayout>
             <StackLayout VerticalOptions="FillAndExpand" >
-                <ScrollView >
+                <ScrollView VerticalOptions="Fill" >
                     <ListView 
                         RowHeight="100" 
                         x:Name="ListViewCourses"
-                        ItemsSource="{Binding Courses}"
+                        IsPullToRefreshEnabled="True"
+                        VerticalOptions="CenterAndExpand"
+                        Refreshing="ListViewCourses_OnRefreshing"
                         ItemSelected="ListViewCourses_OnItemSelected"
+                        
                         >
                         <ListView.ItemTemplate>
                             <DataTemplate>
@@ -85,10 +88,16 @@
                     </ListView>
                 </ScrollView>
             </StackLayout>
-            <StackLayout VerticalOptions="EndAndExpand" Spacing="20" Margin="0,20,0,0">
+            <StackLayout Spacing="20" Margin="0,20,0,0">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer 
+                        NumberOfTapsRequired="1" 
+                        Tapped="BackToDashboard_Clicked"
+                    >
+                    </TapGestureRecognizer>
+                </StackLayout.GestureRecognizers>
                 <border:SfBorder Style="{DynamicResource PrimaryShadowBorder}" HeightRequest="50">
                     <Label Text="Back to the Dashboard" FontSize="18" VerticalOptions="Center" HorizontalOptions="Center" FontFamily="{DynamicResource DefaultRegular}" TextColor="{DynamicResource PrimaryColor}">
-
                     </Label>
                 </border:SfBorder>
             </StackLayout>

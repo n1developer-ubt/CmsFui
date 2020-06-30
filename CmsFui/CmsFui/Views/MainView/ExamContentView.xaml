@@ -9,15 +9,25 @@ xmlns:progressBar="clr-namespace:Syncfusion.XForms.ProgressBar;assembly=Syncfusi
 mc:Ignorable="d"
              x:Class="CmsFui.Views.MainView.ExamContentView">
     <ContentView.Content>
-        <StackLayout Padding="20,30,20,20">
+        <StackLayout Padding="20,5,20,20">
             <StackLayout 
                 VerticalOptions="FillAndExpand"
                 >
+                <Label
+                    x:Name="LabelCourseName"
+                    Text="Human Computer Interaction"
+                    Style="{DynamicResource PrimaryLabel}"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalTextAlignment="Center"
+                    HorizontalTextAlignment="Center"
+                    VerticalOptions="Start">
+
+                </Label>
                 <border:SfBorder 
                     BorderColor="{DynamicResource PrimaryColor}" 
                     BorderWidth="2"
-                    VerticalOptions="CenterAndExpand"
-                    CornerRadius="3"
+                    VerticalOptions="FillAndExpand"
+                    CornerRadius="5"
                     >
                     <ScrollView Padding="10">
                         <ListView RowHeight="90" x:Name="ListViewExams" ItemsSource="{Binding StudentExams}">
@@ -121,7 +131,7 @@ mc:Ignorable="d"
             </StackLayout>
             <StackLayout 
                 Spacing="20" 
-                VerticalOptions="EndAndExpand" 
+                VerticalOptions="End" 
                 Margin="0,10,0,0"
                 >
                 <controls:PrimaryButton 
@@ -145,7 +155,16 @@ mc:Ignorable="d"
                      Style="{DynamicResource LinkLabel}" 
                      Text="Back to the Dashboard" 
                      HorizontalOptions="Center" 
-                     VerticalOptions="Center"></Label>
+                     VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer 
+                            NumberOfTapsRequired="1" 
+                            Tapped="BackToDashboard_Clicked"
+                        >
+
+                        </TapGestureRecognizer>
+                    </Label.GestureRecognizers>
+                </Label>
             </StackLayout>
         </StackLayout>
     </ContentView.Content>

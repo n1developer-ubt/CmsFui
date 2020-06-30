@@ -13,15 +13,17 @@ using Xamarin.Forms.Xaml;
 namespace CmsFui.Views.MainView
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SelectCourseContentView : ContentView
+    public partial class SelectCourseContentView : ContentView, BackableContentView
     {
         private StudentController _studentController = new StudentController();
 
-        public delegate void Action(string code);
+        public delegate void Action(string code, string courseName);
 
         public event Action CourseSelected;
 
         public ObservableCollection<SemesterCourse> Courses = new ObservableCollection<SemesterCourse>();
+
+        private string _courseCode = "";
 
         public SelectCourseContentView()
         {
@@ -38,8 +40,6 @@ namespace CmsFui.Views.MainView
             Courses.Clear();
 
             var result = await _studentController.GetCourses(Global.CurrentStudent.Id);
-
-            int x = 0;
 
             result.ForEach(sc => Courses.Add(sc));
         }
@@ -62,8 +62,21 @@ namespace CmsFui.Views.MainView
 
             if (e.SelectedItem is SemesterCourse sc)
             {
-                CourseSelected?.Invoke(sc.Course.Code);
+                CourseSelected?.Invoke(sc.Course.Code, sc.Course.Name);
             }
+        }
+
+        private async void ListViewCourses_OnRefreshing(object sender, EventArgs e)
+        {
+            await LoadCoursesAsync();
+            ListViewCourses.IsRefreshing = false;
+        }
+
+        public event GoBack.ActionPerformed BackToDashboard;
+
+        private void BackToDashboard_Clicked(object sender, EventArgs e)
+        {
+            BackToDashboard?.Invoke();
         }
     }
 }

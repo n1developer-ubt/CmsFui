@@ -1,3 +1,5 @@
+using Syncfusion.SfPullToRefresh.XForms.iOS;
+using Syncfusion.ListView.XForms.iOS;
 using Syncfusion.XForms.iOS.ProgressBar;
 using Syncfusion.SfChart.XForms.iOS.Renderers;
 using Syncfusion.SfNavigationDrawer.XForms.iOS;
@@ -30,6 +32,8 @@ namespace CmsFui.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
 global::Xamarin.Forms.Forms.Init();
+SfPullToRefreshRenderer.Init();
+SfListViewRenderer.Init();
 SfCircularProgressBarRenderer.Init();
 SfChartRenderer.Init();
 SfNavigationDrawerRenderer.Init();

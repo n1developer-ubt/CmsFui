@@ -131,6 +131,9 @@
     <PackageReference Include="Syncfusion.Xamarin.SfComboBox">
       <Version>18.1.0.55</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfListView">
+      <Version>18.1.0.55</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfMaskedEdit">
       <Version>18.1.0.55</Version>
     </PackageReference>
@@ -141,6 +144,9 @@
       <Version>18.1.0.55</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfProgressBar">
+      <Version>18.1.0.55</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfPullToRefresh">
       <Version>18.1.0.55</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="4.3.0.908675" />

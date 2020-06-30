@@ -13,7 +13,7 @@ namespace CmsFui.Controller
 {
     public class StudentController
     {
-        private const string RestApiAddress = "http://192.168.8.106:5000";
+        private const string RestApiAddress = "http://192.168.8.102:5000";
         private const string RestApiVersion = "v1";
         private const string Controller = "student";
 
@@ -24,9 +24,9 @@ namespace CmsFui.Controller
         public static string SemesterCoursesResult = $"{RestFullAddress}/GetSemesterCoursesResult";
         public static string UnRegisteredCourses = $"{RestFullAddress}/GetUnRegisteredCourses";
         public static string RegisteredCourses = $"{RestFullAddress}/GetRegisteredCourses";
-        public static string RegisterCoursesApi  = $"{RestFullAddress}/RegisterCourses";
+        public static string RegisterCoursesApi = $"{RestFullAddress}/RegisterCourses";
         public static string AttendanceApi = $"{RestFullAddress}/GetAttendance";
-        public static string CourseExams  = $"{RestFullAddress}/GetCourseExams";
+        public static string CourseExams = $"{RestFullAddress}/GetCourseExams";
         public static string UpdateStudentApi = $"{RestFullAddress}/UpdateStudent";
 
         private readonly HttpClient _httpClient;
@@ -84,7 +84,7 @@ namespace CmsFui.Controller
         public async Task<UpdateResult> RegisterCourses(int studentId, List<int> courseIds)
         {
             var url = RegisterCoursesApi + "?" + GetQuery(("studentId", studentId.ToString()));
-            var res = await _httpClient.PostAsync(url,new StringContent(JsonConvert.SerializeObject(courseIds),Encoding.UTF8, "application/json"));
+            var res = await _httpClient.PostAsync(url, new StringContent(JsonConvert.SerializeObject(courseIds), Encoding.UTF8, "application/json"));
 
             if (!res.IsSuccessStatusCode)
                 return UpdateResult.UpdatedFailed;
@@ -92,16 +92,23 @@ namespace CmsFui.Controller
             return UpdateResult.Updated;
         }
 
-        public async Task<List<SemesterCourse>> GetCourses(int studentId, bool registered=true)
+        public async Task<List<SemesterCourse>> GetCourses(int studentId, bool registered = true)
         {
-            var url = (registered ? RegisteredCourses : UnRegisteredCourses)+ "?" + GetQuery(("studentId", studentId.ToString()));
+            var url = (registered ? RegisteredCourses : UnRegisteredCourses) + "?" + GetQuery(("studentId", studentId.ToString()));
+
             var res = await _httpClient.GetAsync(url);
+
+
+            Console.WriteLine("Hello\nHello\nHello\nHello\nHello\nHello\nHello\nHello\nHello\n");
 
             if (!res.IsSuccessStatusCode)
                 return null;
 
+            Console.WriteLine("Hello\nHello\nHello\nHello\nHello\nHello\nHello\nHello\nHello\n");
+
             var result = await res.Content.ReadAsStringAsync();
 
+            Console.Write(result);
 
             return JsonConvert.DeserializeObject<List<SemesterCourse>>(result);
         }
@@ -124,10 +131,10 @@ namespace CmsFui.Controller
 
         public async Task<Student> Authenticate(AuthenticationModel auth)
         {
-            var url = AuthenticateStudent +"?"+GetQueryString(auth);
+            var url = AuthenticateStudent + "?" + GetQueryString(auth);
             var res = await _httpClient.GetAsync(url);
 
-            Console.WriteLine("\nx\nx\nx\nx\nx\n"+url+"\n"+res.StatusCode.ToString()+ "\n\n\n\n\n");
+            Console.WriteLine("\nx\nx\nx\nx\nx\n" + url + "\n" + res.StatusCode.ToString() + "\n\n\n\n\n");
 
             if (res.IsSuccessStatusCode)
             {
@@ -141,13 +148,13 @@ namespace CmsFui.Controller
         public string GetQueryString(object obj)
         {
             var properties = from p in obj.GetType().GetProperties()
-                where p.GetValue(obj, null) != null
-                select p.Name + "=" + HttpUtility.UrlEncode(p.GetValue(obj, null).ToString());
+                             where p.GetValue(obj, null) != null
+                             select p.Name + "=" + HttpUtility.UrlEncode(p.GetValue(obj, null).ToString());
 
             return String.Join("&", properties.ToArray());
         }
 
-        public async Task<Student> GetStudent(int studentId )
+        public async Task<Student> GetStudent(int studentId)
         {
             var url = StudentApi + "?" + GetQuery(("studentId", studentId.ToString()));
             var res = await _httpClient.GetAsync(url);

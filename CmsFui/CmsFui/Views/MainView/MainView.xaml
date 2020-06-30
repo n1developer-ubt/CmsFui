@@ -80,8 +80,7 @@
                 <ScrollView 
                     BackgroundColor="{DynamicResource PrimaryColor}" 
                     VerticalOptions="FillAndExpand">
-                    <ListView 
-                        IsEnabled="false" 
+                    <ListView  
                         x:Name="MenuView" 
                         VerticalOptions="FillAndExpand" 
                         RowHeight="56"

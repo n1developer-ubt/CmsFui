@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CmsFuiApiV1.Controllers
 {
     [Route("/api/v1/student")]
-    public class StudentController:Controller
+    public class StudentController : Controller
     {
 
         private readonly StudentService _studentService;
@@ -17,8 +17,8 @@ namespace CmsFuiApiV1.Controllers
         public StudentController(StudentDbContext dbContext)
         {
             _studentService = new StudentService(dbContext);
-            
-            //_studentService.AddFakeStudent();
+
+            _studentService.AddFakeStudent();
         }
 
         [HttpGet("test")]
@@ -30,7 +30,7 @@ namespace CmsFuiApiV1.Controllers
         [HttpGet("GetSemesterCoursesResult")]
         public async Task<IActionResult> GetSemesterCoursesResult([FromQuery]int studentId)
         {
-            var result = await  _studentService.GetSemesterCoursesResult(studentId);
+            var result = await _studentService.GetSemesterCoursesResult(studentId);
 
             if (result == null)
                 return BadRequest("GetSemesterCoursesResult Error");
@@ -53,7 +53,7 @@ namespace CmsFuiApiV1.Controllers
         [HttpPost("RegisterCourses")]
         public async Task<IActionResult> RegisterCourses([FromQuery]int studentId, [FromBody] List<int> coursesToRegister)
         {
-            await _studentService.RegisterCourses(studentId,coursesToRegister);
+            await _studentService.RegisterCourses(studentId, coursesToRegister);
 
             return Ok();
         }
@@ -80,7 +80,7 @@ namespace CmsFuiApiV1.Controllers
 
             return Ok(exams);
         }
-        
+
 
         [HttpPost("UpdateStudent")]
         public async Task<IActionResult> UpdateStudent([FromBody] Student stu)
@@ -114,10 +114,10 @@ namespace CmsFuiApiV1.Controllers
         [HttpGet("authenticate")]
         public async Task<IActionResult> Authenticate([FromQuery] AuthenticationModel auth)
         {
-            var result = await  _studentService.Authenticate(auth);
+            var result = await _studentService.Authenticate(auth);
 
             if (result == null)
-                return BadRequest(new {error = "Unable to authenticate"});
+                return BadRequest(new { error = "Unable to authenticate" });
 
             return Ok(result);
         }
