@@ -44,7 +44,7 @@ xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart
                                 <Label
                                     VerticalOptions="Center" 
                                     Style="{DynamicResource PrimaryLabelLight}" 
-                                    Text=""
+                                    Text="{Binding CurrentStudent.Name}"
                                     x:Name="LblName">
 
                                 </Label>
@@ -64,7 +64,7 @@ xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart
                                 <Label 
                                     VerticalOptions="Center" 
                                     Style="{DynamicResource PrimaryLabelLight}" 
-                                    Text="F17BCSE053"
+                                    Text="{Binding CurrentStudent.FullRollNumber}"
                                     x:Name="LblRolNo"
                                     >
 
@@ -85,7 +85,7 @@ xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart
                                 <Label 
                                     VerticalOptions="Center" 
                                     Style="{DynamicResource PrimaryLabelLight}" 
-                                    Text="BCSE"
+                                    Text="{Binding CurrentStudent.Program}"
                                     x:Name="LblProgram"
                                     >
                                 </Label>
@@ -112,7 +112,7 @@ xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart
                     </StackLayout>
                 </border:SfBorder>
                 <ScrollView Orientation="Horizontal">
-                    <chart:SfChart x:Name="MyChart" HeightRequest="200">
+                    <chart:SfChart x:Name="ChartAttendance" HeightRequest="200">
                         <chart:SfChart.Legend >
                             <chart:ChartLegend />
                         </chart:SfChart.Legend>
@@ -129,7 +129,7 @@ xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart
                         </chart:SfChart>
                 </ScrollView>
                 <ScrollView Orientation="Horizontal">
-                    <chart:SfChart x:Name="MyChart2" HeightRequest="200">
+                    <chart:SfChart x:Name="ChartResults" HeightRequest="200">
                         <chart:SfChart.Legend >
                             <chart:ChartLegend />
                         </chart:SfChart.Legend>

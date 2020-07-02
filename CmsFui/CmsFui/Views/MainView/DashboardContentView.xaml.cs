@@ -19,32 +19,80 @@ namespace CmsFui.Views.MainView
     {
         public ObservableCollection<AttendanceModel> Data { get; set; }
         private StudentController _studentController;
-        private Student CurrentStudent => Global.CurrentStudent;
+        public Student CurrentStudent => Global.CurrentStudent;
+
         public async Task LoadEverything()
         {
-            LblName.Text = CurrentStudent.Name;
-            LblProgram.Text = CurrentStudent.Program;
-            LblRolNo.Text = CurrentStudent.Season+ CurrentStudent.Year+ CurrentStudent.Program+ CurrentStudent.RollNo;
-
             var result = await _studentController.GetStudentSemesters(CurrentStudent.Id);
 
             LblGpa.Text = result.Average(x => x.Gpa).ToString();
 
             var courses = await _studentController.GetCourses(CurrentStudent.Id);
 
+            var atts = new Dictionary<string, List<Attendance>>();
+
             foreach (var course in courses)
             {
                 var attendance = await _studentController.GetAttendance(CurrentStudent.Id, course.Course.Code);
 
-                var attGroup = attendance.GroupBy(at => at.Date.Month);
-
-                var data = new ObservableCollection<AttendanceModel>();
-
-                foreach (var att in attGroup)
+                foreach (var att in attendance)
                 {
-                    //data.Add( new AttendanceModel());
+                    if (!atts.ContainsKey(att.Date.Month.ToString()))
+                    {
+                        atts[att.Date.Month.ToString()] = new List<Attendance>();
+                    }
+
+                    atts[att.Date.Month.ToString()].Add(att);
                 }
 
+                var data = new ObservableCollection<DashboardContentView.AttendanceModel>();
+
+                foreach (var re in atts.Keys)
+                {
+                    var da = new AttendanceModel(re, atts[re].Count(x => x.Present));
+                    data.Add(da);
+                }
+
+                data = new ObservableCollection<DashboardContentView.AttendanceModel>(
+                    data.OrderBy(i => Convert.ToInt16(i.Month)));
+
+                
+                var marker = new ChartDataMarker()
+                    { LabelStyle = new DataMarkerLabelStyle() { LabelPosition = DataMarkerLabelPosition.Inner } };
+
+                ChartAttendance.Series.Add(new ColumnSeries()
+                {
+                    ItemsSource = data,
+                    DataMarker = marker,
+                    XBindingPath = "Month",
+                    YBindingPath = "Target",
+                    Label = course.Course.Name,
+                    EnableAnimation = true,
+                    AnimationDuration = 1
+                });
+            }
+
+            var results = await _studentController.GetStudentSemesters(CurrentStudent.Id);
+
+            foreach (var semester in results)
+            {
+                var resultsData = new ObservableCollection<AttendanceModel>();
+                resultsData.Add(new AttendanceModel(semester.Title.Split('#')[1],semester.Gpa));
+                var markerResult = new ChartDataMarker()
+                    { LabelStyle = new DataMarkerLabelStyle() { LabelPosition = DataMarkerLabelPosition.Inner } };
+
+
+                ChartResults.Series.Add(new ColumnSeries()
+                {
+                    ItemsSource = resultsData,
+                    DataMarker = markerResult,
+                    XBindingPath = "Month",
+                    YBindingPath = "Target",
+                    Label = semester.Title,
+                    EnableAnimation = true,
+                    AnimationDuration = 1,
+                    Spacing = 0.1
+                });
             }
 
         }
@@ -52,8 +100,9 @@ namespace CmsFui.Views.MainView
         public DashboardContentView()
         {
             InitializeComponent();
+            BindingContext = this;
             _studentController = new StudentController();
-
+            return;
             Data = new ObservableCollection<AttendanceModel>()
             {
                 new AttendanceModel("Jan", 50),
@@ -63,11 +112,12 @@ namespace CmsFui.Views.MainView
                 new AttendanceModel("May", 48),
             };
             var marker = new ChartDataMarker(){LabelStyle =  new DataMarkerLabelStyle(){LabelPosition = DataMarkerLabelPosition.Inner}};
-            MyChart.Series.Add(new ColumnSeries(){ItemsSource = Data, XBindingPath = "Month", YBindingPath = "Target", Label = "Hello", Width = 100, EnableAnimation = true, AnimationDuration = 1, DataMarker = marker });
-            MyChart.Series.Add(new ColumnSeries(){ItemsSource = Data, XBindingPath = "Month", YBindingPath = "Target", Label = "HelloWorld", EnableAnimation = true, AnimationDuration = 1, DataMarker = marker });
-            MyChart.Series.Add(new ColumnSeries(){ItemsSource = Data, XBindingPath = "Month", YBindingPath = "Target", Label = "HelloS", EnableAnimation = true, AnimationDuration = 1, DataMarker = marker });
-            MyChart.Series.Add(new ColumnSeries(){ItemsSource = Data, XBindingPath = "Month", YBindingPath = "Target", EnableAnimation = true, AnimationDuration = 1, DataMarker = marker});
+            ChartAttendance.Series.Add(new ColumnSeries(){ItemsSource = Data, XBindingPath = "Month", YBindingPath = "Target", Label = "Hello", Width = 100, EnableAnimation = true, AnimationDuration = 1, DataMarker = marker });
+            ChartAttendance.Series.Add(new ColumnSeries(){ItemsSource = Data, XBindingPath = "Month", YBindingPath = "Target", Label = "HelloWorld", EnableAnimation = true, AnimationDuration = 1, DataMarker = marker });
+            ChartAttendance.Series.Add(new ColumnSeries(){ItemsSource = Data, XBindingPath = "Month", YBindingPath = "Target", Label = "HelloS", EnableAnimation = true, AnimationDuration = 1, DataMarker = marker });
+            ChartAttendance.Series.Add(new ColumnSeries(){ItemsSource = Data, XBindingPath = "Month", YBindingPath = "Target", EnableAnimation = true, AnimationDuration = 1, DataMarker = marker});
         }
+
 
         public class AttendanceModel
         {

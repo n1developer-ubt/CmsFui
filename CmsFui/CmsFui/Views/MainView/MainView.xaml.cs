@@ -22,7 +22,11 @@ namespace CmsFui.Views.MainView
         public MainView()
         {
             InitializeComponent();
+
             _dashboard = new DashboardContentView();
+
+            Task.Run(async () => { await _dashboard.LoadEverything(); });
+
             MainContentView.PropertyChanged += MainContentViewOnPropertyChanged;
             _selectCourse = new SelectCourseContentView();
             _selectCourse.CourseSelected += SelectCourseOnCourseSelected;
@@ -122,6 +126,7 @@ namespace CmsFui.Views.MainView
                     break;
                 case 4:
                     SelectedPage = PageType.FeeChallan;
+                    MainContentView.Content = new FeeChallanContentView();
                     break;
                 case 5:
                     SelectedPage = PageType.Setting;
@@ -149,6 +154,11 @@ namespace CmsFui.Views.MainView
             }
 
             await DisplayAlert("Error", e, "Ok");
+        }
+
+        private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
+        {
+            navigationDrawer.ToggleDrawer();
         }
     }
 

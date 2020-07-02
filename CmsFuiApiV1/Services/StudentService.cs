@@ -67,40 +67,47 @@ namespace CmsFuiApiV1.Services
                 TotalMarks = 10
             };
 
-            StudentExam stuExam = new StudentExam()
+            var studentExams = new List<StudentExam>()
             {
-                ObtainedMarks = 8,
-                Exam = exam
+                new StudentExam()
+                {
+                    Exam = exam,
+                    ObtainedMarks = 8,
+                },
+                new StudentExam()
+                {
+                    Exam = exam,
+                    ObtainedMarks = 9,
+                },
+                new StudentExam()
+                {
+                    Exam = exam,
+                    ObtainedMarks = 1,
+                },
+                new StudentExam()
+                {
+                    Exam = exam,
+                    ObtainedMarks = 3,
+                },
             };
 
-            StudentExam stuExam2 = new StudentExam()
-            {
-                ObtainedMarks = 8,
-                Exam = exam2
-            };
 
             SemesterCourse hciSemesterCourse = new SemesterCourse()
             {
                 Teacher = teacherAsma,
                 Course = hciCourse,
-                StudentExams = new List<StudentExam>()
-                {
-                    stuExam,
-                    stuExam,
-                    stuExam,
-                    stuExam
-                },
+                StudentExams = studentExams,
                 Attendances = GetRandomAttendances(200)
             };
+
+            var studentExams2 = new List<StudentExam>();
+            studentExams2.Add(new StudentExam(){Exam = exam2, ObtainedMarks = 1});
 
             SemesterCourse svvSemesterCourse = new SemesterCourse()
             {
                 Teacher = teacherAqeel,
                 Course = svvCourse,
-                StudentExams = new List<StudentExam>()
-                {
-                    stuExam2
-                },
+                StudentExams = studentExams2,
                 Attendances = GetRandomAttendances(200)
             };
 
@@ -118,6 +125,25 @@ namespace CmsFuiApiV1.Services
                 Gpa = 3.8
             };
 
+            var studentSemester2 = new StudentSemester()
+            {
+                Semester = sem6,
+                Courses = new List<SemesterCourse>(),
+                Description = "Fall 2019",
+                Title = "Semester #5",
+                Gpa = 3.7
+            };
+
+            var studentSemester3 = new StudentSemester()
+            {
+                Semester = sem6,
+                Courses = new List<SemesterCourse>(),
+                Description = "Fall 2019",
+                Title = "Semester #4",
+                Gpa = 3.6
+            };
+
+
             Student newStudent = new Student
             {
                 Email = "usamat37@gmail.com",
@@ -130,10 +156,8 @@ namespace CmsFuiApiV1.Services
                 Semesters = new List<StudentSemester>()
                 {
                     studentSemester,
-                    studentSemester,
-                    studentSemester,
-                    studentSemester,
-                    studentSemester
+                    studentSemester2,
+                    studentSemester3
                 }
             };
 

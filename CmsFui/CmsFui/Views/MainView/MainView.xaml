@@ -130,6 +130,11 @@
         <navigationdrawer:SfNavigationDrawer.DrawerFooterView>
             <StackLayout BackgroundColor="{DynamicResource PrimaryColor}" VerticalOptions="CenterAndExpand" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" >
                 <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer
+                            NumberOfTapsRequired="1"
+                            Tapped="TapGestureRecognizer_OnTapped"></TapGestureRecognizer>
+                    </Grid.GestureRecognizers>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition/>

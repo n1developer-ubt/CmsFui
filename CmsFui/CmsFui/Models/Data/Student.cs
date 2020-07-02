@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
 namespace CmsFui.Models.Data
 {
@@ -18,5 +19,8 @@ namespace CmsFui.Models.Data
         public List<StudentSemester> Semesters { get; set; }
 
         public StudentSemester CurrentSemester { get; set; }
+
+        [JsonIgnore]
+        public string FullRollNumber => Season + Year + Program + RollNo;
     }
 }

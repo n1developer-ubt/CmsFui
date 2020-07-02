@@ -26,7 +26,7 @@ namespace CmsFui
                 Year = 2017,
             };
 
-            MainPage = new NavigationPage(new MainView());
+            MainPage = new MainPage(); /*new NavigationPage(new MainView());*/
         }
 
         protected override void OnStart()
